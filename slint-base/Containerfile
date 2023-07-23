@@ -1,0 +1,49 @@
+ARG REGISTRY=
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG BASE_VERSION2=
+ARG BASE_IMAGE2=
+ARG GPU=
+
+FROM ${REGISTRY}${BASE_IMAGE}-${IMAGE_ARCH}:${BASE_VERSION} AS SDK
+
+ARG REGISTRY
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG BASE_VERSION2
+ARG BASE_IMAGE2
+ARG GPU
+
+##
+# Add this to the final image
+##
+FROM --platform=linux/${IMAGE_ARCH} \
+    ${BASE_REGISTRY}${BASE_IMAGE2}${GPU}:${BASE_VERSION2} AS Deploy
+
+ARG IMAGE_ARCH
+
+LABEL org.opencontainers.image.source https://github.com/commontorizon/Contaierfiles
+LABEL org.opencontainers.image.authors "microhobby <matheus@castello.eng>"
+LABEL org.opencontainers.image.title "Slint Runtime"
+LABEL org.opencontainers.image.description "Slint Runtime Base Image"
+LABEL org.opencontainers.image.licenses "MIT"
+
+# Install Slint dependencies
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install \
+    libfontconfig1 \
+    libxkbcommon0 \
+    fonts-noto-core \
+    fonts-noto-cjk \
+    fonts-noto-cjk-extra \
+    fonts-noto-color-emoji \
+    fonts-noto-ui-core \
+    fonts-noto-ui-extra \
+    && rm -rf /var/lib/apt/lists/*
+
+# copy Slint library
+COPY --from=SDK /usr/lib/libslint* /usr/lib
