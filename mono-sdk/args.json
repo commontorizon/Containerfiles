@@ -1,0 +1,28 @@
+{
+    "image": "/mono-sdk",
+    "registry": "commontorizon",
+    "version": "6.12.0",
+    "machines": [
+        {
+            "name": "generic",
+            "arch": [
+                "arm",
+                "arm64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "3.0.8",
+            "GPU": ""
+        },
+        {
+            "name": "arm64-vivante",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "3.0.8",
+            "GPU": "-vivante"
+        }
+    ]
+}

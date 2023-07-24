@@ -30,8 +30,8 @@ if (Test-Path $ContainerFileFolder) {
             | ConvertFrom-Json
 
     $env:IMAGE_VERSION = $metadata.version
-    $env:IMAGE_REGISTRY = $metadata.registry
-    $env:IMAGE_NAME = (_resolveImageNameVariables $metadata.image)
+    $env:REGISTRY = $metadata.registry
+    $env:IMAGE_NAME = $metadata.image
 
     foreach ($args in $metadata.machines) {
         $env:BASE_REGISTRY = $args.BASE_REGISTRY
@@ -42,7 +42,7 @@ if (Test-Path $ContainerFileFolder) {
         Write-Host -ForegroundColor Yellow `
             "Building:"
         Write-Host -ForegroundColor Yellow `
-            "`tImage: $($env:IMAGE_REGISTRY)$($env:IMAGE_NAME):$($env:IMAGE_VERSION)"
+            "`tImage: $($env:REGISTRY)$($env:IMAGE_NAME):$($env:IMAGE_VERSION)"
         Write-Host -ForegroundColor Yellow `
             "`tImage Base: $($env:BASE_REGISTRY)$($env:BASE_IMAGE)$($env:GPU):$($env:BASE_VERSION)"
         Write-Host -ForegroundColor Yellow `
