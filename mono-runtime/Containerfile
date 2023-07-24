@@ -1,0 +1,58 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG GPU=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS SDK
+
+# Make sure we don't get notifications we can't answer during building.
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# stick to bookworm on /etc/apt/sources.list.d
+RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
+
+# update the base packages
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    apt-utils \
+    && apt-get -y upgrade \
+    && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+# Add the mono feed
+RUN apt-get -q -y update && \
+    apt install apt-transport-https dirmngr gnupg ca-certificates && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
+    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+    echo "deb https://download.mono-project.com/repo/debian stable-buster main" \
+    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
+
+# install dependencies
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    libicu72 \
+    gettext \
+    apt-transport-https \
+    libx11-6 \
+	libunwind-13 \
+    icu-devtools \
+	libfontconfig1 \
+	libgtk-3-0 \
+    libgtk-3-bin \
+    libgtk-3-common \
+	libdrm2 \
+	libinput10 \
+    libdigest-md5-perl \
+    libssl3 \
+    mono-runtime \
+	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+# fix mime types
+RUN apt-get -y update && apt-get --reinstall install -y --no-install-recommends \
+    shared-mime-info \
+	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+RUN printf "{\n  \"device\": \"/dev/dri/card1\",\n  \"outputs\": [ { \"name\": \"HDMI1\" } ],\n  \"hwcursor\": false\n}" > /etc/kms-imx6.conf \
+    && printf "{\n  \"hwcursor\": false\n}" > /etc/kms-imx8.conf \
+    && ln -s /etc/kms-imx8.conf /etc/kms-imx7.conf
