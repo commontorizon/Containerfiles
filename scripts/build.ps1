@@ -16,6 +16,26 @@ $SCRIPT_PATH = Split-Path -Parent $MyInvocation.MyCommand.Definition
 . (Join-Path $SCRIPT_PATH ./env.ps1)
 . (Join-Path $SCRIPT_PATH ./sec.ps1)
 
+function _checkEnvVariable {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$name
+    )
+
+    $_env = [Environment]::GetEnvironmentVariable(
+        $name
+    )
+
+    if (
+        $null -eq $_env -or
+        $_env -eq ""
+    ) {
+        Write-Host -ForegroundColor Red `
+            "❌ $name MUST BE SET"
+        exit 69
+    }
+}
+
 Binfmt
 DockerRegistryLogin
 
@@ -25,18 +45,27 @@ if (Test-Path $ContainerFileFolder) {
         (Join-Path $ContainerFileFolder args.json) `
             | ConvertFrom-Json
 
+    # common properties
     $env:IMAGE_VERSION = $metadata.version
     $env:IMAGE_REGISTRY = $metadata.registry
     $env:REGISTRY = $metadata.registry
+    $env:IMAGE_PREFIX = $metadata.image_prefix
 
     foreach ($args in $metadata.machines) {
-        $env:BASE_REGISTRY = $args.BASE_REGISTRY
-        $env:BASE_IMAGE = $args.BASE_IMAGE
-        $env:BASE_VERSION = $args.BASE_VERSION
-        $env:BASE_IMAGE2 = $args.BASE_IMAGE2
-        $env:BASE_VERSION2 = $args.BASE_VERSION2
-        $env:IMAGE_ARCH = $args.IMAGE_ARCH
-        $env:GPU = $args.GPU
+        # query $args properties and set them as env variables
+        $args.PSObject.Properties | ForEach-Object {
+            # the name should be uppercase
+            [Environment]::SetEnvironmentVariable(
+                $_.Name.ToUpper(),
+                $_.Value
+            )
+        }
+
+        # sanity check
+        _checkEnvVariable "IMAGE_REGISTRY"
+        _checkEnvVariable "IMAGE_PREFIX"
+        _checkEnvVariable "NAME"
+        _checkEnvVariable "IMAGE_VERSION"
 
         # set IMAGE_NAME and build it
         $env:IMAGE_NAME = "$($metadata.image_prefix)-$($args.name)"
@@ -46,21 +75,18 @@ if (Test-Path $ContainerFileFolder) {
         Write-Host -ForegroundColor Yellow `
             "`tImage: $($env:IMAGE_REGISTRY)$($env:IMAGE_NAME)$($env:GPU):$($env:IMAGE_VERSION)"
         Write-Host -ForegroundColor Yellow `
-            "`tBASE_REGISTRY: $($env:BASE_REGISTRY)"
-        Write-Host -ForegroundColor Yellow `
-            "`tBASE_IMAGE: $($env:BASE_IMAGE)"
-        Write-Host -ForegroundColor Yellow `
-            "`tBASE_VERSION: $($env:BASE_VERSION)"
-        Write-Host -ForegroundColor Yellow `
-            "`tBASE_IMAGE2: $($env:BASE_IMAGE2)"
-        Write-Host -ForegroundColor Yellow `
-            "`tBASE_VERSION2: $($env:BASE_VERSION2)"
-        Write-Host -ForegroundColor Yellow `
-            "`tIMAGE_ARCH: $($env:IMAGE_ARCH)"
-        Write-Host -ForegroundColor Yellow `
-            "`tREGISTRY: $($env:REGISTRY)"
-        Write-Host -ForegroundColor Yellow `
-            "`tGPU: $($env:GPU)"
+            "`tArgs:"
+
+        # query $env properties and set them as env variables
+        $args.PSObject.Properties | ForEach-Object {
+            # the name should be uppercase
+            $_env = [Environment]::GetEnvironmentVariable(
+                $_.Name.ToUpper()
+            )
+
+            Write-Host -ForegroundColor Yellow `
+                "`t`t$($_.Name.ToUpper()): $($_env)"
+        }
 
         docker compose -f $ContainerFileFolder/docker-compose.yml build
         docker compose -f $ContainerFileFolder/docker-compose.yml push
