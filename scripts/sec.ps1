@@ -1,4 +1,5 @@
-
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
 )]
