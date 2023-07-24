@@ -10,6 +10,10 @@ ARG BASE_VERSION2=
 ARG BASE_IMAGE2=
 ARG GPU=
 
+##
+# ⚠️ This is getting the Slint version from the SDK:
+# https://github.com/commontorizon/Containerfiles/blob/main/slint-sdk/Containerfile#L90
+##
 FROM ${REGISTRY}${BASE_IMAGE}-${IMAGE_ARCH}:${BASE_VERSION} AS SDK
 
 ARG REGISTRY
