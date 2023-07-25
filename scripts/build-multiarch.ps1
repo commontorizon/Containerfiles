@@ -31,6 +31,7 @@ if (Test-Path $ContainerFileFolder) {
 
     $env:IMAGE_VERSION = $metadata.version
     $env:REGISTRY = $metadata.registry
+    $env:IMAGE_REGISTRY = $metadata.registry
     $env:IMAGE_NAME = $metadata.image
 
     foreach ($args in $metadata.machines) {
