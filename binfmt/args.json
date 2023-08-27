@@ -1,0 +1,20 @@
+{
+    "image": "/binfmt",
+    "registry": "commontorizon",
+    "version": "latest",
+    "machines": [
+        {
+            "name": "generic",
+            "arch": [
+                "arm/v6",
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "",
+            "BASE_IMAGE": "",
+            "BASE_VERSION": "",
+            "GPU": ""
+        }
+    ]
+}

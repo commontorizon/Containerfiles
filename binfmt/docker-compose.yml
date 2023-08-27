@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  gambas3:
+    build:
+      context: ./binfmt
+      dockerfile: Containerfile
+      args:
+        IMAGE_REGISTRY: ${IMAGE_REGISTRY}
+        IMAGE_NAME: ${IMAGE_NAME}
+        IMAGE_VERSION: ${IMAGE_VERSION}
+        BASE_REGISTRY: ${BASE_REGISTRY}
+        BASE_IMAGE: ${BASE_IMAGE}
+        BASE_VERSION: ${BASE_VERSION}
+        GPU: ${GPU}
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}
