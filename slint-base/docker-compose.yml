@@ -2,7 +2,7 @@ version: "3.9"
 services:
   slint-base:
     build:
-      context: ./slint-base
+      context: .
       dockerfile: Containerfile
       args:
         REGISTRY: ${REGISTRY}
