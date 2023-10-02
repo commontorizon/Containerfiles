@@ -1,14 +1,14 @@
 {
     "image_prefix": "/slint-base",
     "registry": "commontorizon",
-    "version": "3.0.9-bookworm-1.2.1",
+    "version": "3.0.9-bookworm-1.2.2",
     "machines": [
         {
             "name": "arm",
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.0.9-bookworm-1.2.1",
+            "BASE_VERSION": "3.0.9-bookworm-1.2.2",
             "BASE_VERSION2": "3.0.8",
             "IMAGE_ARCH": "arm",
             "GPU": ""
@@ -18,7 +18,7 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.0.9-bookworm-1.2.1",
+            "BASE_VERSION": "3.0.9-bookworm-1.2.2",
             "BASE_VERSION2": "3.0.8",
             "IMAGE_ARCH": "arm64",
             "GPU": ""
@@ -28,7 +28,7 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.0.9-bookworm-1.2.1",
+            "BASE_VERSION": "3.0.9-bookworm-1.2.2",
             "BASE_VERSION2": "3.0.8",
             "IMAGE_ARCH": "arm64",
             "GPU": "-vivante"
