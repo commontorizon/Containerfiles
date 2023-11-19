@@ -50,7 +50,7 @@ if (Test-Path $ContainerFileFolder) {
         Write-Host -ForegroundColor Yellow `
             "Building:"
         Write-Host -ForegroundColor Yellow `
-            "`tImage: $($env:REGISTRY)$($env:IMAGE_NAME):$($env:IMAGE_VERSION)"
+            "`tImage: $($env:REGISTRY)$($env:IMAGE_NAME)$($env:GPU):$($env:IMAGE_VERSION)"
         Write-Host -ForegroundColor Yellow `
             "`tImage Base: $($env:BASE_REGISTRY)$($env:BASE_IMAGE)$($env:GPU):$($env:BASE_VERSION)"
         Write-Host -ForegroundColor Yellow `
