@@ -29,6 +29,13 @@ if (Test-Path $ContainerFileFolder) {
         (Join-Path $ContainerFileFolder args.json) `
             | ConvertFrom-Json
 
+    # check if this is the right script to build it
+    if ($metadata.multiarch -ne $true) {
+        Write-Host -ForegroundColor Red `
+            "This is not buildable with this script, please use ./scripts/build.ps1"
+        exit 69
+    }
+
     $env:IMAGE_VERSION = $metadata.version
     $env:REGISTRY = $metadata.registry
     $env:IMAGE_REGISTRY = $metadata.registry
@@ -54,7 +61,7 @@ if (Test-Path $ContainerFileFolder) {
             Write-Host -ForegroundColor Yellow `
                 "`tArch: $arch"
 
-            if ($_archs -ne "") { 
+            if ($_archs -ne "") {
                 $_archs = "$_archs,linux/$arch"
             } else {
                 $_archs = "linux/$arch"
@@ -65,7 +72,7 @@ if (Test-Path $ContainerFileFolder) {
             -f $ContainerFileFolder/docker-compose.yml `
             --set *.platform=$_archs `
             --push
-        
+
     }
 } else {
     Write-Host -ForegroundColor Red `

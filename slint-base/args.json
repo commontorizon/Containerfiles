@@ -2,6 +2,7 @@
     "image_prefix": "/slint-base",
     "registry": "commontorizon",
     "version": "3.0.9-bookworm-1.3.0",
+    "multiarch": false,
     "machines": [
         {
             "name": "arm",

@@ -34,7 +34,7 @@ function GhrcRegistryLogin {
 
 function DockerRegistryLogin {
     $REGISTRY_USERNAME = `
-        Env -Name "REGISTRY_USERNAME" -Default "chorizon"
+        Env -Name "REGISTRY_USERNAME" -Default "matheuscastello"
     $REGISTRY_PASSWORD = (Get-Sec -Name "dockerhub_token")
 
     Write-Output $REGISTRY_PASSWORD | `

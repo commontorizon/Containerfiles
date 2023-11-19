@@ -2,6 +2,7 @@
     "image": "/binfmt",
     "registry": "commontorizon",
     "version": "latest",
+    "multiarch": "true",
     "machines": [
         {
             "name": "generic",

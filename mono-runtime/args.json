@@ -2,6 +2,7 @@
     "image": "/mono-runtime",
     "registry": "commontorizon",
     "version": "6.12.0",
+    "multiarch": true,
     "machines": [
         {
             "name": "generic",

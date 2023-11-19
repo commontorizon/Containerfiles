@@ -47,6 +47,13 @@ if (Test-Path $ContainerFileFolder) {
         (Join-Path $ContainerFileFolder args.json) `
             | ConvertFrom-Json
 
+    # check if this is the right script to build it
+    if ($metadata.multiarch -eq $true) {
+        Write-Host -ForegroundColor Red `
+            "This is not buildable with this script, please use ./scripts/build-multiarch.ps1"
+        exit 69
+    }
+
     try {
         Set-Location $ContainerFileFolder
 

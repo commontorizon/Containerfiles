@@ -2,6 +2,7 @@
     "image": "/gambas3",
     "registry": "commontorizon",
     "version": "3.17.90",
+    "multiarch": true,
     "machines": [
         {
             "name": "generic",
