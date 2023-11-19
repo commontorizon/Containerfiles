@@ -1,0 +1,44 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+
+##
+# Board architecture
+##
+ARG IMAGE_ARCH=
+
+##
+# The registry and the namespace
+##
+ARG BASE_REGISTRY=
+
+##
+# Base container image name
+##
+ARG BASE_IMAGE=
+
+##
+# Base container version
+##
+ARG BASE_VERSION=
+
+##
+# GPU prefix
+##
+ARG GPU=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
+
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends \
+    wait-for-it \
+    cog && \
+    apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+COPY start-cog.sh /usr/bin/start-browser
+
+USER torizon
+
+ENV DISPLAY=:0
+
+ENTRYPOINT ["/usr/bin/start-browser"]
+CMD ["http://www.toradex.com"]
