@@ -3,13 +3,17 @@
 # default URL
 URL="www.toradex.com"
 
+if [ ! -z "$1" ]; then
+    URL=$1
+fi
+
 OPTION=$2
-WAIT_FOR_IT_COMMAND="/usr/bin/wait-for-it $URL -t 0 --strict --"
-COG_COMMAND="eval exec cog $URL"
+COG_COMMAND="cog $URL"
+WAIT4_COMMAND="/usr/bin/wait4 $URL '$COG_COMMAND'"
 
 if [ ! -z "$2" ] && [ "$2" = "-w" ]; then
-    # use the wait-for-it script to wait for the webserver to be up
-    $WAIT_FOR_IT_COMMAND $COG_COMMAND
+    # use the wait4 to wait the webserver to be up
+    eval exec $WAIT4_COMMAND
 else
-    $COG_COMMAND
+    eval exec $COG_COMMAND
 fi

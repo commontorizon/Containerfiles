@@ -30,11 +30,14 @@ FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends \
-    wait-for-it \
     cog && \
     apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 COPY start-cog.sh /usr/bin/start-browser
+COPY wait4.sh /usr/bin/wait4
+
+RUN chmod +x /usr/bin/start-browser && \
+    chmod +x /usr/bin/wait4
 
 USER torizon
 
