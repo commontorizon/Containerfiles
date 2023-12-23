@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  tcb:
+    build:
+      context: .
+      dockerfile: Containerfile
+      args:
+        REGISTRY: ${REGISTRY}
+        IMAGE_REGISTRY: ${IMAGE_REGISTRY}
+        IMAGE_NAME: ${IMAGE_NAME}
+        IMAGE_VERSION: ${IMAGE_VERSION}
+        BASE_REGISTRY: ${BASE_REGISTRY}
+        BASE_IMAGE: ${BASE_IMAGE}
+        BASE_VERSION: ${BASE_VERSION}
+        BASE_IMAGE2: ${BASE_IMAGE2}
+        BASE_VERSION2: ${BASE_VERSION2}
+        IMAGE_ARCH: ${IMAGE_ARCH}
+        GPU: ${GPU}
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}

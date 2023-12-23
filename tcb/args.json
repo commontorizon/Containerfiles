@@ -1,0 +1,18 @@
+{
+    "image_prefix": "/tcb",
+    "registry": "commontorizon",
+    "version": "3.8.2-common",
+    "multiarch": false,
+    "machines": [
+        {
+            "name": "dev",
+            "BASE_REGISTRY": "",
+            "BASE_IMAGE": "debian",
+            "BASE_IMAGE2": "",
+            "BASE_VERSION": "bullseye-slim",
+            "BASE_VERSION2": "",
+            "IMAGE_ARCH": "amd64",
+            "GPU": ""
+        }
+    ]
+}
