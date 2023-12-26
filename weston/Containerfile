@@ -1,0 +1,45 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG GPU=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston
+
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG GPU
+
+# This is only a fix for the upstream torizon/weston
+# that is not running the weston as torizon user
+COPY upstream-entry.sh /usr/bin/upstream-entry.sh
+RUN chmod +x /usr/bin/upstream-entry.sh && \
+    usermod -a -G weston-launch torizon && \
+    usermod -a -G torizon torizon && \
+    # fixup the arch
+    IMAGE_ARCH="$(arch)" && \
+    if [ "${IMAGE_ARCH}" = "x86_64" ]; then \
+        IMAGE_ARCH="amd64" ; \
+    fi && \
+    if [ "${IMAGE_ARCH}" = "aarch64" ]; then \
+        IMAGE_ARCH="arm64" ; \
+    fi && \
+    if [ "${IMAGE_ARCH}" = "armv7l" ]; then \
+        IMAGE_ARCH="armhf" ; \
+    fi && \
+    # if the GPU is not set, we replace the entry.sh and install custom weston
+    if [ -z "${GPU}" ]; then \
+        mv /usr/bin/upstream-entry.sh /usr/bin/entry.sh ; \
+        wget https://github.com/commontorizon/debian/releases/download/v0.0.0/weston_10.0.1-1_${IMAGE_ARCH}.deb && \
+        wget https://github.com/commontorizon/debian/releases/download/v0.0.0/libweston-10-0_10.0.1-1_${IMAGE_ARCH}.deb && \
+        apt-get update && apt-get install -y --allow-downgrades ./*.deb && \
+        apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/* ; \
+    fi
+
+WORKDIR /home/torizon
+
+ENTRYPOINT ["/usr/bin/entry.sh"]
