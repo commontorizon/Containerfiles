@@ -20,6 +20,7 @@ OPTIONS=developer,no-change-tty,tty:
 WAYLAND_USER=${WAYLAND_USER:-torizon}
 WESTON_ARGS=${WESTON_ARGS:--Bdrm-backend.so --current-mode -S${WAYLAND_DISPLAY}}
 IGNORE_VT_SWITCH_BACK=${IGNORE_VT_SWITCH_BACK:-0}
+IGNORE_X_LOCKS=${IGNORE_X_LOCKS:-0}
 
 #
 # Parse options.
@@ -126,6 +127,11 @@ function init_xdg() {
 }
 
 init_xdg
+
+if [ "$IGNORE_X_LOCKS" != "1" ]; then
+	echo "Removing previously created '.X*-lock' entries under /tmp before starting Weston. Pass 'IGNORE_X_LOCKS=1' environment variable to Weston container to disable this behavior."
+	rm -rf /tmp/.X*-lock
+fi
 
 function cleanup() {
 	if [ "$IGNORE_VT_SWITCH_BACK" != "1" ]; then
