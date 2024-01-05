@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: MIT
 param(
     [Parameter(Mandatory=$true)]
-    [string]$ContainerFileFolder
+    [string]$ContainerFileFolder,
+    [Parameter(Mandatory=$false)]
+    [bool]$NoCache = $false
 )
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
@@ -100,7 +102,12 @@ if (Test-Path $ContainerFileFolder) {
                     "`t`t$($_.Name.ToUpper()): $($_env)"
             }
 
-            docker compose build
+            if ($NoCache -eq $true) {
+              docker compose build --no-cache
+            } else {
+              docker compose build
+            }
+
             docker compose push
         }
     } catch {
