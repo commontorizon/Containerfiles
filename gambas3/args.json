@@ -1,7 +1,7 @@
 {
     "image": "/gambas3",
     "registry": "commontorizon",
-    "version": "3.17.90",
+    "version": "3.17.90-4-rc",
     "multiarch": true,
     "machines": [
         {
@@ -12,18 +12,18 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "3.0.8",
+            "BASE_VERSION": "4-rc",
             "GPU": ""
         },
         {
-            "name": "arm64-vivante",
+            "name": "arm64-imx8",
             "arch": [
                 "arm64"
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "3.0.8",
-            "GPU": "-vivante"
+            "BASE_VERSION": "4-rc",
+            "GPU": "-imx8"
         }
     ]
 }
