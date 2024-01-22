@@ -1,0 +1,16 @@
+{
+    "image_prefix": "/bsp-builder",
+    "registry": "commontorizon",
+    "version": "latest",
+    "multiarch": false,
+    "machines": [
+        {
+            "name": "amd64",
+            "BASE_REGISTRY": "",
+            "BASE_IMAGE": "debian",
+            "BASE_VERSION": "bookworm",
+            "IMAGE_ARCH": "amd64",
+            "GPU": ""
+        }
+    ]
+}
