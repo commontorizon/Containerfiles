@@ -30,6 +30,7 @@ FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends \
+    curl \
     cog && \
     apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
@@ -42,6 +43,7 @@ RUN chmod +x /usr/bin/start-browser && \
 USER torizon
 
 ENV DISPLAY=:0
+ENV COG_PLATFORM_WL_VIEW_FULLSCREEN=1
 
 ENTRYPOINT ["/usr/bin/start-browser"]
 CMD ["http://www.toradex.com"]
