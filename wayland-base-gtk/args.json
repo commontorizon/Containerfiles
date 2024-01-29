@@ -1,0 +1,40 @@
+{
+    "image": "/wayland-base-gtk",
+    "registry": "commontorizon",
+    "version": "4-rc",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "generic",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "4-rc",
+            "GPU": ""
+        },
+        {
+            "name": "arm64-imx8",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "4-rc",
+            "GPU": "-imx8"
+        },
+        {
+            "name": "arm64-am62",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "4-rc",
+            "GPU": "-am62"
+        }
+    ]
+}
