@@ -1,0 +1,43 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}:${BASE_VERSION} AS weston
+
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+
+# Make sure we don't get notifications we can't answer during building.
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Preconfigure keyboard layout
+RUN echo 'keyboard-configuration keyboard-configuration/layoutcode string us' | debconf-set-selections
+
+# install dependencies
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    udev \
+    dbus-x11 \
+    xinput 	\
+    libicu72 \
+    libx11-6 \
+    libunwind8 \
+    libfontconfig1 \
+    libinput10 && \
+    apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+COPY ./torizon-entry.sh /usr/bin/torizon-entry.sh
+
+RUN chmod +x /usr/bin/torizon-entry.sh
+
+ENV X11_UNIX_SOCKET="/tmp/.X11-unix"
+ENV XDG_RUNTIME_DIR=/tmp/1000-runtime-dir
+ENV XAUTHORITY=/tmp/.Xauthority
+ENV DBUS_SESSION_BUS_ADDRESS=unix:path=/tmp/dbus-session-bus
+ENV DISPLAY=:0
+
+ENTRYPOINT [ "/usr/bin/torizon-entry.sh" ]

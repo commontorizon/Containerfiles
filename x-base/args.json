@@ -1,0 +1,19 @@
+{
+    "image": "/x-base",
+    "registry": "commontorizon",
+    "version": "4-rc",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "generic",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/debian",
+            "BASE_VERSION": "rc-bookworm"
+        }
+    ]
+}
