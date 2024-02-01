@@ -1,0 +1,384 @@
+org.gnome.desktop.background picture-uri ''
+org.gnome.desktop.background picture-uri-dark ''
+org.gnome.desktop.background primary-color '#023c88'
+org.gnome.desktop.background secondary-color '#5789ca'
+org.gnome.desktop.background show-desktop-icons false
+org.gnome.desktop.calendar show-weekdate false
+org.gnome.desktop.datetime automatic-timezone fals
+org.gnome.desktop.default-applications.office.calendar needs-term false
+org.gnome.desktop.default-applications.office.tasks exec 'evolution -c tasks'
+org.gnome.desktop.default-applications.office.tasks needs-term false
+org.gnome.desktop.default-applications.terminal exec 'x-terminal-emulator'
+org.gnome.desktop.default-applications.terminal exec-arg '-e'
+org.gnome.desktop.input-sources current uint32 0
+org.gnome.desktop.input-sources mru-sources @a(ss) []
+org.gnome.desktop.input-sources per-window false
+org.gnome.desktop.input-sources show-all-sources false
+org.gnome.desktop.input-sources sources @a(ss) []
+org.gnome.desktop.input-sources xkb-options @as []
+org.gnome.desktop.interface avatar-directories @as []
+org.gnome.desktop.interface can-change-accels false
+org.gnome.desktop.interface clock-format '24h'
+org.gnome.desktop.interface clock-show-date true
+org.gnome.desktop.interface clock-show-seconds false
+org.gnome.desktop.interface clock-show-weekday false
+org.gnome.desktop.interface color-scheme 'default'
+org.gnome.desktop.interface cursor-blink true
+org.gnome.desktop.interface cursor-blink-time 1200
+org.gnome.desktop.interface cursor-blink-timeout 10
+org.gnome.desktop.interface cursor-size 24
+org.gnome.desktop.interface cursor-theme 'Adwaita'
+org.gnome.desktop.interface document-font-name 'Cantarell 11'
+org.gnome.desktop.interface enable-animations true
+org.gnome.desktop.interface enable-hot-corners true
+org.gnome.desktop.interface font-antialiasing 'grayscale'
+org.gnome.desktop.interface font-hinting 'slight'
+org.gnome.desktop.interface font-name 'Cantarell 11'
+org.gnome.desktop.interface font-rgba-order 'rgb'
+org.gnome.desktop.interface gtk-color-scheme ''
+org.gnome.desktop.interface gtk-enable-primary-paste true
+org.gnome.desktop.interface gtk-im-module ''
+org.gnome.desktop.interface gtk-im-preedit-style 'callback'
+org.gnome.desktop.interface gtk-im-status-style 'callback'
+org.gnome.desktop.interface gtk-key-theme 'Default'
+org.gnome.desktop.interface gtk-theme 'Adwaita'
+org.gnome.desktop.interface gtk-timeout-initial 200
+org.gnome.desktop.interface gtk-timeout-repeat 20
+org.gnome.desktop.interface icon-theme 'Adwaita'
+org.gnome.desktop.interface locate-pointer false
+org.gnome.desktop.interface menubar-accel 'F10'
+org.gnome.desktop.interface menubar-detachable false
+org.gnome.desktop.interface menus-have-tearoff false
+org.gnome.desktop.interface monospace-font-name 'Monospace 11'
+org.gnome.desktop.interface overlay-scrolling true
+org.gnome.desktop.interface scaling-factor uint32 0
+org.gnome.desktop.interface show-battery-percentage false
+org.gnome.desktop.interface text-scaling-factor 1.0
+org.gnome.desktop.interface toolbar-detachable false
+org.gnome.desktop.interface toolbar-icons-size 'large'
+org.gnome.desktop.interface toolbar-style 'both-horiz'
+org.gnome.desktop.interface toolkit-accessibility true
+org.gnome.desktop.lockdown disable-application-handlers false
+org.gnome.desktop.lockdown disable-command-line false
+org.gnome.desktop.lockdown disable-lock-screen false
+org.gnome.desktop.lockdown disable-log-out false
+org.gnome.desktop.lockdown disable-print-setup false
+org.gnome.desktop.lockdown disable-printing false
+org.gnome.desktop.lockdown disable-save-to-disk false
+org.gnome.desktop.lockdown disable-show-password false
+org.gnome.desktop.lockdown disable-user-switching false
+org.gnome.desktop.lockdown mount-removable-storage-devices-as-read-only false
+org.gnome.desktop.lockdown user-administration-disabled false
+org.gnome.desktop.media-handling automount true
+org.gnome.desktop.media-handling automount-open true
+org.gnome.desktop.media-handling autorun-never false
+org.gnome.desktop.media-handling autorun-x-content-ignore @as []
+org.gnome.desktop.media-handling autorun-x-content-open-folder @as []
+org.gnome.desktop.notifications application-children @as []
+org.gnome.desktop.notifications show-banners true
+org.gnome.desktop.notifications show-in-lock-screen true
+org.gnome.desktop.peripherals.tablet area [0.0, 0.0, 0.0, 0.0]
+org.gnome.desktop.peripherals.tablet keep-aspect false
+org.gnome.desktop.peripherals.tablet left-handed false
+org.gnome.desktop.peripherals.tablet mapping 'absolute'
+org.gnome.desktop.peripherals.tablet output ['', '', '']
+org.gnome.desktop.peripherals.touchscreen output ['', '', '']
+org.gnome.desktop.peripherals.keyboard delay uint32 500
+org.gnome.desktop.peripherals.keyboard numlock-state false
+org.gnome.desktop.peripherals.keyboard remember-numlock-state true
+org.gnome.desktop.peripherals.keyboard repeat true
+org.gnome.desktop.peripherals.keyboard repeat-interval uint32 30
+org.gnome.desktop.peripherals.mouse accel-profile 'default'
+org.gnome.desktop.peripherals.mouse double-click 400
+org.gnome.desktop.peripherals.mouse drag-threshold 8
+org.gnome.desktop.peripherals.mouse left-handed false
+org.gnome.desktop.peripherals.mouse middle-click-emulation false
+org.gnome.desktop.peripherals.mouse natural-scroll false
+org.gnome.desktop.peripherals.mouse speed 0.0
+org.gnome.desktop.peripherals.pointingstick accel-profile 'default'
+org.gnome.desktop.peripherals.pointingstick scroll-method 'default'
+org.gnome.desktop.peripherals.pointingstick speed 0.0
+org.gnome.desktop.peripherals.touchpad accel-profile 'default'
+org.gnome.desktop.peripherals.touchpad click-method 'fingers'
+org.gnome.desktop.peripherals.touchpad disable-while-typing true
+org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled false
+org.gnome.desktop.peripherals.touchpad left-handed 'mouse'
+org.gnome.desktop.peripherals.touchpad middle-click-emulation false
+org.gnome.desktop.peripherals.touchpad natural-scroll true
+org.gnome.desktop.peripherals.touchpad send-events 'enabled'
+org.gnome.desktop.peripherals.touchpad speed 0.0
+org.gnome.desktop.peripherals.touchpad tap-and-drag true
+org.gnome.desktop.peripherals.touchpad tap-and-drag-lock false
+org.gnome.desktop.peripherals.touchpad tap-button-map 'default'
+org.gnome.desktop.peripherals.touchpad tap-to-click false
+org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
+org.gnome.desktop.peripherals.trackball accel-profile 'default'
+org.gnome.desktop.peripherals.trackball middle-click-emulation false
+org.gnome.desktop.peripherals.trackball scroll-wheel-emulation-button 0
+org.gnome.desktop.peripherals.trackball scroll-wheel-emulation-button-lock false
+org.gnome.desktop.privacy disable-camera false
+org.gnome.desktop.privacy disable-microphone false
+org.gnome.desktop.privacy disable-sound-output false
+org.gnome.desktop.privacy hide-identity false
+org.gnome.desktop.privacy old-files-age uint32 30
+org.gnome.desktop.privacy privacy-screen false
+org.gnome.desktop.privacy recent-files-max-age -1
+org.gnome.desktop.privacy remember-app-usage true
+org.gnome.desktop.privacy remember-recent-files true
+org.gnome.desktop.privacy remove-old-temp-files false
+org.gnome.desktop.privacy remove-old-trash-files false
+org.gnome.desktop.privacy report-technical-problems false
+org.gnome.desktop.privacy send-software-usage-stats false
+org.gnome.desktop.privacy show-full-name-in-top-bar true
+org.gnome.desktop.privacy usb-protection true
+org.gnome.desktop.privacy usb-protection-level 'lockscreen'
+org.gnome.desktop.screensaver color-shading-type 'solid'
+org.gnome.desktop.screensaver embedded-keyboard-command 'onboard --xid'
+org.gnome.desktop.screensaver embedded-keyboard-enabled false
+org.gnome.desktop.screensaver idle-activation-enabled true
+org.gnome.desktop.screensaver lock-delay uint32 0
+org.gnome.desktop.screensaver lock-enabled true
+org.gnome.desktop.screensaver logout-command ''
+org.gnome.desktop.screensaver logout-delay uint32 7200
+org.gnome.desktop.screensaver logout-enabled false
+org.gnome.desktop.screensaver picture-opacity 100
+org.gnome.desktop.screensaver picture-options 'zoom'
+org.gnome.desktop.screensaver picture-uri ''
+org.gnome.desktop.screensaver primary-color '#023c88'
+org.gnome.desktop.screensaver secondary-color '#5789ca'
+org.gnome.desktop.screensaver show-full-name-in-top-bar true
+org.gnome.desktop.screensaver status-message-enabled true
+org.gnome.desktop.screensaver user-switch-enabled true
+org.gnome.desktop.search-providers disable-external false
+org.gnome.desktop.search-providers disabled @as []
+org.gnome.desktop.search-providers enabled @as []
+org.gnome.desktop.session idle-delay uint32 300
+org.gnome.desktop.session session-name 'gnome'
+org.gnome.desktop.sound allow-volume-above-100-percent false
+org.gnome.desktop.sound event-sounds true
+org.gnome.desktop.sound input-feedback-sounds false
+org.gnome.desktop.sound theme-name 'freedesktop'
+org.gnome.desktop.thumbnail-cache maximum-age 180
+org.gnome.desktop.thumbnail-cache maximum-size 512
+org.gnome.desktop.thumbnailers disable @as []
+org.gnome.desktop.thumbnailers disable-all false
+org.gnome.settings-daemon.peripherals.keyboard bell-custom-file ''
+org.gnome.settings-daemon.peripherals.keyboard bell-duration 100
+org.gnome.settings-daemon.peripherals.keyboard bell-mode 'on'
+org.gnome.settings-daemon.peripherals.keyboard bell-pitch 400
+org.gnome.settings-daemon.peripherals.keyboard click true
+org.gnome.settings-daemon.peripherals.keyboard click-volume 0
+org.gnome.settings-daemon.peripherals.smartcard removal-action 'none'
+org.gnome.settings-daemon.peripherals.touchscreen orientation-lock false
+org.gnome.settings-daemon.plugins.color night-light-enabled false
+org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
+org.gnome.settings-daemon.plugins.color night-light-schedule-from 20.0
+org.gnome.settings-daemon.plugins.color night-light-schedule-to 6.0
+org.gnome.settings-daemon.plugins.color night-light-temperature uint32 2700
+org.gnome.settings-daemon.plugins.color recalibrate-display-threshold uint32 0
+org.gnome.settings-daemon.plugins.color recalibrate-printer-threshold uint32 0
+org.gnome.settings-daemon.plugins.housekeeping free-percent-notify 0.050000000000000003
+org.gnome.settings-daemon.plugins.housekeeping free-percent-notify-again 0.01
+org.gnome.settings-daemon.plugins.housekeeping free-size-gb-no-notify 1
+org.gnome.settings-daemon.plugins.housekeeping ignore-paths @as []
+org.gnome.settings-daemon.plugins.housekeeping min-notify-period 10
+org.gnome.settings-daemon.plugins.power ambient-enabled true
+org.gnome.settings-daemon.plugins.power idle-brightness 30
+org.gnome.settings-daemon.plugins.power idle-dim true
+org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
+org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery true
+org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 1200
+org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'suspend'
+org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+org.gnome.settings-daemon.plugins.wwan unlock-sim false
+org.gnome.system.locale region ''
+org.gnome.system.location enabled false
+org.gnome.system.location max-accuracy-level 'exact'
+org.gnome.system.proxy autoconfig-url ''
+org.gnome.system.proxy ignore-hosts ['localhost', '127.0.0.0/8', '::1']
+org.gnome.system.proxy mode 'none'
+org.gnome.system.proxy use-same-proxy true
+org.gnome.system.proxy.ftp host ''
+org.gnome.system.proxy.ftp port 0
+org.gnome.system.proxy.http authentication-password ''
+org.gnome.system.proxy.http authentication-user ''
+org.gnome.system.proxy.http enabled false
+org.gnome.system.proxy.http host ''
+org.gnome.system.proxy.http port 8080
+org.gnome.system.proxy.http use-authentication false
+org.gnome.system.proxy.https host ''
+org.gnome.system.proxy.https port 0
+org.gnome.system.proxy.socks host ''
+org.gnome.system.proxy.socks port 0
+org.gtk.Demo color 'red'
+org.gtk.Demo fullscreen false
+org.gtk.Demo maximized false
+org.gtk.Demo window-size (-1, -1)
+org.gtk.Settings.ColorChooser custom-colors @a(dddd) []
+org.gtk.Settings.ColorChooser selected-color (false, 1.0, 1.0, 1.0, 1.0)
+org.gtk.Settings.Debug enable-inspector-keybinding false
+org.gtk.Settings.Debug inspector-warning true
+org.gtk.Settings.EmojiChooser recent-emoji @a((auss)u) []
+org.gtk.Settings.FileChooser clock-format '24h'
+org.gtk.Settings.FileChooser date-format 'regular'
+org.gtk.Settings.FileChooser expand-folders false
+org.gtk.Settings.FileChooser last-folder-uri ''
+org.gtk.Settings.FileChooser location-mode 'path-bar'
+org.gtk.Settings.FileChooser show-hidden false
+org.gtk.Settings.FileChooser show-size-column true
+org.gtk.Settings.FileChooser show-type-column true
+org.gtk.Settings.FileChooser sidebar-width 148
+org.gtk.Settings.FileChooser sort-column 'name'
+org.gtk.Settings.FileChooser sort-directories-first false
+org.gtk.Settings.FileChooser sort-order 'ascending'
+org.gtk.Settings.FileChooser startup-mode 'recent'
+org.gtk.Settings.FileChooser type-format 'category'
+org.gtk.Settings.FileChooser window-position (-1, -1)
+org.gtk.Settings.FileChooser window-size (-1, -1)
+org.gtk.exampleapp font 'Monospace 12'
+org.gtk.exampleapp show-words false
+org.gtk.exampleapp transition 'none'
+org.onboard current-settings-page 0
+org.onboard key-label-font ''
+org.onboard key-label-overrides @as []
+org.onboard layout '/usr/share/onboard/layouts/Phone.onboard'
+org.onboard schema-version '2.3'
+org.onboard show-status-icon true
+org.onboard show-tooltips true
+org.onboard snippets ['0:Onboard\\nHome:https\\://launchpad.net/onboard', '1:Example:Create your macros here.']
+org.onboard start-minimized true
+org.onboard status-icon-provider 'auto'
+org.onboard system-theme-associations {'HighContrast': 'HighContrast', 'HighContrastInverse': 'HighContrastInverse', 'L>
+org.onboard system-theme-tracking-enabled false
+org.onboard theme '/usr/share/onboard/themes/Blackboard.theme'
+org.onboard use-system-defaults false
+org.onboard xembed-aspect-change-range [0.0, 1.6000000000000001]
+org.onboard xembed-background-color '#0000007F'
+org.onboard xembed-background-image-enabled true
+org.onboard xembed-onboard false
+org.onboard xembed-unity-greeter-offset-x 85.0
+org.onboard.auto-show enabled true
+org.onboard.auto-show hide-on-key-press false
+org.onboard.auto-show hide-on-key-press-pause 1800.0
+org.onboard.auto-show keyboard-device-detection-enabled false
+org.onboard.auto-show keyboard-device-detection-exceptions @as []
+org.onboard.auto-show reposition-method-docked 'prevent-occlusion'
+org.onboard.auto-show reposition-method-floating 'prevent-occlusion'
+org.onboard.auto-show tablet-mode-detection-enabled false
+org.onboard.auto-show tablet-mode-enter-key 0
+org.onboard.auto-show tablet-mode-leave-key 0
+org.onboard.auto-show tablet-mode-state-file ''
+org.onboard.auto-show tablet-mode-state-file-pattern '1'
+org.onboard.auto-show widget-clearance (25.0, 55.0, 25.0, 40.0)
+org.onboard.icon-palette in-use false
+org.onboard.icon-palette window-handles 'E SE S SW W NW N NE M'
+org.onboard.icon-palette.landscape height 64
+org.onboard.icon-palette.landscape width 64
+org.onboard.icon-palette.landscape x 1772
+org.onboard.icon-palette.landscape y 972
+org.onboard.icon-palette.portrait height 64
+org.onboard.icon-palette.portrait width 64
+org.onboard.icon-palette.portrait x 100
+org.onboard.icon-palette.portrait y 50
+org.onboard.keyboard audio-feedback-enabled false
+org.onboard.keyboard audio-feedback-place-in-space false
+org.onboard.keyboard default-key-action 'delayed-stroke'
+org.onboard.keyboard input-event-source 'XInput'
+org.onboard.keyboard inter-key-stroke-delay 0.0
+org.onboard.keyboard key-press-modifiers {'button3': 'SHIFT'}
+org.onboard.keyboard key-synth 'auto'
+org.onboard.keyboard long-press-delay 0.5
+org.onboard.keyboard modifier-update-delay 1.0
+org.onboard.keyboard show-click-buttons false
+org.onboard.keyboard show-secondary-labels false
+org.onboard.keyboard sticky-key-behavior {'all': 'cycle'}
+org.onboard.keyboard sticky-key-release-delay 0.0
+org.onboard.keyboard sticky-key-release-on-hide-delay 5.0
+org.onboard.keyboard touch-feedback-enabled false
+org.onboard.keyboard touch-feedback-size 0
+org.onboard.keyboard touch-input 'multi'
+org.onboard.lockdown disable-click-buttons false
+org.onboard.lockdown disable-dwell-activation false
+org.onboard.lockdown disable-hover-click false
+org.onboard.lockdown disable-keys [['CTRL', 'LALT', 'F[0-9]+']]
+org.onboard.lockdown disable-preferences false
+org.onboard.lockdown disable-quit false
+org.onboard.lockdown disable-touch-handles false
+org.onboard.scanner alternate false
+org.onboard.scanner backtrack 5
+org.onboard.scanner cycles 2
+org.onboard.scanner device-button-map {1: 0, 3: 5}
+org.onboard.scanner device-detach false
+org.onboard.scanner device-key-map @a{ii} {}
+org.onboard.scanner device-name 'Default'
+org.onboard.scanner enabled false
+org.onboard.scanner feedback-flash true
+org.onboard.scanner interval 1.2
+org.onboard.scanner interval-fast 0.050000000000000003
+org.onboard.scanner mode 'Autoscan'
+org.onboard.scanner user-scan false
+org.onboard.theme-settings background-gradient 0.0
+org.onboard.theme-settings color-scheme '/usr/share/onboard/themes/Charcoal.colors'
+org.onboard.theme-settings key-fill-gradient 8.0
+org.onboard.theme-settings key-gradient-direction -3.0
+org.onboard.theme-settings key-label-font ''
+org.onboard.theme-settings key-label-overrides @as []
+org.onboard.theme-settings key-shadow-size 0.0
+org.onboard.theme-settings key-shadow-strength 0.0
+org.onboard.theme-settings key-size 92.0
+org.onboard.theme-settings key-stroke-gradient 0.0
+org.onboard.theme-settings key-stroke-width 100.0
+org.onboard.theme-settings key-style 'gradient'
+org.onboard.theme-settings roundrect-radius 30.0
+org.onboard.typing-assistance active-language ''
+org.onboard.typing-assistance auto-capitalization false
+org.onboard.typing-assistance auto-correction false
+org.onboard.typing-assistance max-recent-languages 5
+org.onboard.typing-assistance recent-languages @as []
+org.onboard.typing-assistance spell-check-backend 'hunspell'
+org.onboard.typing-assistance.word-suggestions accent-insensitive true
+org.onboard.typing-assistance.word-suggestions auto-learn true
+org.onboard.typing-assistance.word-suggestions delayed-word-separators-enabled false
+org.onboard.typing-assistance.word-suggestions enabled false
+org.onboard.typing-assistance.word-suggestions learning-behavior-paused 'nothing'
+org.onboard.typing-assistance.word-suggestions max-word-choices 5
+org.onboard.typing-assistance.word-suggestions pause-learning-locked false
+org.onboard.typing-assistance.word-suggestions punctuation-assistance true
+org.onboard.typing-assistance.word-suggestions show-context-line false
+org.onboard.typing-assistance.word-suggestions spelling-suggestions-enabled true
+org.onboard.typing-assistance.word-suggestions stealth-mode false
+org.onboard.typing-assistance.word-suggestions wordlist-buttons ['previous-predictions', 'next-predictions', 'language'>
+org.onboard.universal-access drag-threshold -1
+org.onboard.universal-access enable-click-type-window-on-exit true
+org.onboard.universal-access hide-click-type-window true
+org.onboard.window background-transparency 10.0
+org.onboard.window docking-aspect-change-range [0.0, 2.0]
+org.onboard.window docking-edge 'bottom'
+org.onboard.window docking-enabled true
+org.onboard.window docking-monitor 'active'
+org.onboard.window docking-shrink-workarea false
+org.onboard.window enable-inactive-transparency false
+org.onboard.window force-to-top false
+org.onboard.window inactive-transparency 50.0
+org.onboard.window inactive-transparency-delay 1.0
+org.onboard.window keep-aspect-ratio false
+org.onboard.window transparency 0.0
+org.onboard.window transparent-background false
+org.onboard.window window-decoration false
+org.onboard.window window-handles 'E SE S SW W NW N NE M'
+org.onboard.window window-state-sticky true
+org.onboard.window.landscape dock-expand true
+org.onboard.window.landscape dock-height 188
+org.onboard.window.landscape dock-width 700
+org.onboard.window.landscape height 205
+org.onboard.window.landscape width 700
+org.onboard.window.landscape x 629
+org.onboard.window.landscape y 798
+org.onboard.window.portrait dock-expand true
+org.onboard.window.portrait dock-height 200
+org.onboard.window.portrait dock-width 600
+org.onboard.window.portrait height 200
+org.onboard.window.portrait width 600
+org.onboard.window.portrait x 100
+org.onboard.window.portrait y 50
