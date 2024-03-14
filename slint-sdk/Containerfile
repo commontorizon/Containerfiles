@@ -21,7 +21,7 @@ ARG BASE_VERSION2
 ARG BASE_IMAGE2
 ARG GPU
 
-LABEL org.opencontainers.image.source https://github.com/commontorizon/Contaierfiles
+LABEL org.opencontainers.image.source https://github.com/commontorizon/Containerfiles
 LABEL org.opencontainers.image.authors "microhobby <matheus@castello.eng>"
 LABEL org.opencontainers.image.title "Slint SDK"
 LABEL org.opencontainers.image.description "Slint SDK Base Image"
