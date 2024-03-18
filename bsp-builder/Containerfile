@@ -21,6 +21,7 @@ RUN apt-get update \
         gcc-arm-linux-gnueabihf \
         gcc-riscv64-linux-gnu \
         u-boot-tools \
+        libelf-dev \
         bc bison build-essential coccinelle \
         device-tree-compiler dfu-util efitools flex gdisk graphviz imagemagick \
         liblz4-tool libgnutls28-dev libguestfs-tools libncurses-dev \
