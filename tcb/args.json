@@ -1,7 +1,7 @@
 {
     "image_prefix": "/tcb",
     "registry": "commontorizon",
-    "version": "3.8.2-common",
+    "version": "3.9.0-common",
     "multiarch": false,
     "machines": [
         {
