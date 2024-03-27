@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  torizon:
+    image: ghcr.io/commontorizon/Containerfiles/torizon:latest
+    devices:
+      - /dev/kvm
+    environment:
+      - DISPLAY=${DISPLAY:-:1}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    ports:
+      - "2222:2222"
+networks:
+  qemu:
+    driver: bridge

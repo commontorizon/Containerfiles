@@ -1,0 +1,23 @@
+FROM ubuntu:latest as download-wic
+ARG TORIZON_VERSION
+
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y curl unzip \
+    && curl -L -o torizon.zip https://github.com/commontorizon/meta-common-torizon/releases/download/v${TORIZON_VERSION}-common/torizon-core-common-docker-dev-v${TORIZON_VERSION}-common-qemux86-64.zip \
+    && unzip torizon.zip -d /torizon \
+    && rm torizon.zip \
+    && mv /torizon/*.wic /torizon/torizon.wic
+
+FROM ubuntu:latest as qemu
+COPY --from=download-wic /torizon/torizon.wic .
+
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+        qemu-system && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+EXPOSE 2222
+CMD ["qemu-system-x86_64", "-cpu", "host", "-nic", "user,hostfwd=tcp::2222-:22", "-machine", "pc", "-vga", "virtio", "-m", "4096", "-drive", "file=/torizon.wic,format=raw", "-bios", "/usr/share/ovmf/OVMF.fd", "-enable-kvm"]
