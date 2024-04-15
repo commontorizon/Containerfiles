@@ -1,16 +1,35 @@
-version: '3'
+version: "3.9"
 
 services:
-  torizon:
-    image: ghcr.io/commontorizon/Containerfiles/torizon:latest
-    devices:
-      - /dev/kvm
+  emulator:
+    container_name: emulator
+    build:
+      context: .
+      dockerfile: Containerfile
+      args:
+        REGISTRY: ${REGISTRY}
+        IMAGE_REGISTRY: ${IMAGE_REGISTRY}
+        IMAGE_VERSION: ${IMAGE_VERSION}
+        TORIZON_VERSION: ${TORIZON_VERSION}
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}:${IMAGE_VERSION}
+    privileged: true
+    network_mode: host
+    init: false
     environment:
       - DISPLAY=${DISPLAY:-:1}
+      - INSTANCES=${INSTANCES:-1}
+      - STORAGE=${STORAGE:-8}
+      - RAM=${RAM:-4}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-    ports:
-      - "2222:2222"
-networks:
-  qemu:
-    driver: bridge
+    depends_on:
+      - dhcp
+
+  dhcp:
+    container_name: dhcp
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}:${IMAGE_VERSION}
+    command:
+      - dhcp
+    privileged: true
+    network_mode: host
+    init: false

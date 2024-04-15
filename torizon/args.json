@@ -1,0 +1,19 @@
+{
+    "image_prefix": "/emulator",
+    "registry": "commontorizon",
+    "version": "6.7.0",
+    "multiarch": false,
+    "machines": [
+        {
+            "name": "dev",
+            "BASE_REGISTRY": "",
+            "BASE_IMAGE": "",
+            "BASE_IMAGE2": "",
+            "BASE_VERSION": "",
+            "BASE_VERSION2": "",
+            "IMAGE_ARCH": "",
+            "GPU": "",
+            "TORIZON_VERSION": "v6.7.0-common"
+        }
+    ]
+}
