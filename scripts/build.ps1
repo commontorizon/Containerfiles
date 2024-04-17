@@ -84,6 +84,11 @@ if (Test-Path $ContainerFileFolder) {
             # set IMAGE_NAME and build it
             $env:IMAGE_NAME = "$($metadata.image_prefix)-$($args.name)"
 
+            if ($NoCache -eq $true) {
+                Write-Host -ForegroundColor Yellow `
+                    "⚠️ Building without cache"
+            }
+
             Write-Host -ForegroundColor Yellow `
                 "Building:"
             Write-Host -ForegroundColor Yellow `
