@@ -31,6 +31,7 @@ RUN apt-get update \
         python3-pytest python3-pytest-xdist python3-sphinxcontrib.apidoc \
         python3-sphinx-rtd-theme python3-subunit python3-testtools \
         python3-virtualenv swig uuid-dev \
+        rsync \
     && apt-mark minimize-manual -y \
     && apt-get autopurge -y \
     && apt-get clean
