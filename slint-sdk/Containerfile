@@ -68,14 +68,20 @@ RUN rustup target add $(cat /rust-toolchain-arch.txt)
 RUN \
     --mount=type=cache,target=/var/cache/apt \
     CROSS_TOOLCHAIN_ARCH=$(cat /cross-toolchain-arch.txt) && \
+    rm /etc/apt/sources.list.d/toradex.sources && \
     apt-get update && \
     apt-get install --assume-yes \
+    pkg-config \
     libfontconfig1-dev:$CROSS_TOOLCHAIN_ARCH \
     libxcb1-dev:$CROSS_TOOLCHAIN_ARCH \
     libxcb-render0-dev:$CROSS_TOOLCHAIN_ARCH \
     libxcb-shape0-dev:$CROSS_TOOLCHAIN_ARCH \
     libxcb-xfixes0-dev:$CROSS_TOOLCHAIN_ARCH \
     libxkbcommon-dev:$CROSS_TOOLCHAIN_ARCH \
+    libinput-dev:$CROSS_TOOLCHAIN_ARCH \
+    libudev-dev:$CROSS_TOOLCHAIN_ARCH \
+    libdrm2:$CROSS_TOOLCHAIN_ARCH \
+    libgbm-dev:$CROSS_TOOLCHAIN_ARCH \
     python3 \
     clang \
     libstdc++-11-dev:$CROSS_TOOLCHAIN_ARCH && \
@@ -86,6 +92,9 @@ ENV RUST_FONTCONFIG_DLOPEN=on
 
 # Default to Ninja
 ENV CMAKE_GENERATOR=Ninja
+# ENV PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
+# ENV PKG_CONFIG_ALLOW_CROSS=1
+# ENV BINDGEN_EXTRA_CLANG_ARGS_aarch64_unknown_linux_gnu=-I/usr/include
 
 # Build Slint
 ##
