@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "./scripts/build.ps1",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "args": [
+                        "-NoProfile",
+                        "-File"
+                    ],
+                    "executable": "pwsh"
+                }
+            },
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "focus": true
+            },
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-multiarch",
+            "type": "shell",
+            "command": "./scripts/build-multiarch.ps1",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "args": [
+                        "-NoProfile",
+                        "-File"
+                    ],
+                    "executable": "pwsh"
+                }
+            },
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "focus": true
+            },
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "folder",
+            "default": "torizon",
+            "description": "Select a folder to use as context to build"
+        }
+    ]
+}
