@@ -39,7 +39,7 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "4-bookworm-rc-1.6.0",
+            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
             "BASE_VERSION2": "next",
             "IMAGE_ARCH": "amd64",
             "GPU": ""
