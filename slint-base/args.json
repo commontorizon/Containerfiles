@@ -10,7 +10,7 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.0.8",
+            "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm",
             "GPU": ""
         },
@@ -20,7 +20,7 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.0.8",
+            "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm64",
             "GPU": ""
         },
@@ -30,7 +30,7 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.0.8",
+            "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm64",
             "GPU": "-vivante"
         },
