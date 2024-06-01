@@ -1,7 +1,7 @@
 {
     "image_prefix": "/emulator",
     "registry": "commontorizon",
-    "version": "6.7.0",
+    "version": "6.7.1",
     "multiarch": false,
     "machines": [
         {

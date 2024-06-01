@@ -34,7 +34,7 @@ if [ $_instances -gt 1 ]; then
             -vga none \
             -device virtio-gpu-pci \
             -device virtio-tablet-pci \
-            -display gtk \
+            -display gtk,zoom-to-fit=off \
             -m $_ramSize \
             -drive file=/torizon$i.wic,format=raw \
             -bios /usr/share/ovmf/OVMF.fd \
@@ -63,7 +63,7 @@ qemu-system-x86_64 \
     -vga none \
     -device virtio-gpu-pci \
     -device virtio-tablet-pci \
-    -display gtk \
+    -display gtk,zoom-to-fit=off \
     -m $_ramSize \
     -drive file=/torizon.wic,format=raw \
     -bios /usr/share/ovmf/OVMF.fd \
