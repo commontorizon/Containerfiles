@@ -27,7 +27,8 @@ if [ $_instances -gt 1 ]; then
 
         qemu-system-x86_64 \
             -name "Torizon Emulator" \
-            -cpu host \
+            $(if [ "$NO_KVM" != "1" ]; then echo "-cpu host"; else echo "-cpu qemu64"; fi) \
+            -smp 4 \
             --netdev bridge,id=hn0,br=docker0 \
             -device virtio-net-pci,netdev=hn0,id=nic1,mac=$_random_mac \
             -machine pc \
@@ -38,7 +39,8 @@ if [ $_instances -gt 1 ]; then
             -m $_ramSize \
             -drive file=/torizon$i.wic,format=raw \
             -bios /usr/share/ovmf/OVMF.fd \
-            -enable-kvm &
+            $(if [ "$NO_KVM" != "1" ]; then echo "-enable-kvm"; fi) \
+            &
 
     done
 
@@ -56,7 +58,8 @@ qemu-img resize -f raw /torizon.wic +${_hdSize}G
 
 qemu-system-x86_64 \
     -name "Torizon Emulator" \
-    -cpu host \
+    $(if [ "$NO_KVM" != "1" ]; then echo "-cpu host"; else echo "-cpu qemu64"; fi) \
+    -smp 4 \
     --netdev bridge,id=hn0,br=docker0 \
     -device virtio-net-pci,netdev=hn0,id=nic1,mac=$_random_mac \
     -machine pc \
@@ -67,5 +70,5 @@ qemu-system-x86_64 \
     -m $_ramSize \
     -drive file=/torizon.wic,format=raw \
     -bios /usr/share/ovmf/OVMF.fd \
-    -enable-kvm \
-    -serial mon:stdio
+    -serial mon:stdio \
+    $(if [ "$NO_KVM" != "1" ]; then echo "-enable-kvm"; fi)
