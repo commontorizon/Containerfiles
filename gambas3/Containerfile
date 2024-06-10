@@ -108,9 +108,9 @@ RUN apt-get -q -y update  \
         && rm -rf /var/lib/apt/lists/*
 
 RUN export GIT_SSL_NO_VERIFY=1 && \
-    git clone https://gitlab.com/microhobby/gambas.git  \
+    git clone https://github.com/microhobby/gambas.git  \
         && cd gambas  \
-        && git checkout microhobby-stable \
+        && git checkout next \
         && ./reconf-all  \
         && GAMBAS_CONFIG_FAILURE=1 ./configure -C --disable-keyring --disable-sqlite2 --disable-qt4 --disable-qtwebkit  \
         && make -j$(nproc)  \
