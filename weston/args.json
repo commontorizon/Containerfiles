@@ -1,7 +1,7 @@
 {
     "image": "/weston",
     "registry": "commontorizon",
-    "version": "4-rc",
+    "version": "next",
     "multiarch": true,
     "machines": [
         {
@@ -13,7 +13,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/weston",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": ""
         },
         {
@@ -23,7 +23,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/weston",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": "-imx8"
         },
         {
@@ -33,7 +33,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/weston",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": "-am62"
         }
     ]

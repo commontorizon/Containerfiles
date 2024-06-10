@@ -1,7 +1,7 @@
 {
     "image_prefix": "/slint-base",
     "registry": "commontorizon",
-    "version": "3.3.0-bookworm-1.6.0",
+    "version": "next-1.6.0",
     "multiarch": false,
     "machines": [
         {
@@ -10,7 +10,7 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.3.0",
+            "BASE_VERSION2": "next",
             "IMAGE_ARCH": "arm",
             "GPU": ""
         },
@@ -20,7 +20,7 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.3.0",
+            "BASE_VERSION2": "next",
             "IMAGE_ARCH": "arm64",
             "GPU": ""
         },
@@ -30,9 +30,19 @@
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
             "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "3.3.0",
+            "BASE_VERSION2": "next",
             "IMAGE_ARCH": "arm64",
-            "GPU": "-vivante"
+            "GPU": "-imx8"
+        },
+        {
+            "name": "arm64",
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE": "/slint-sdk",
+            "BASE_IMAGE2": "/wayland-base",
+            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
+            "BASE_VERSION2": "next",
+            "IMAGE_ARCH": "arm64",
+            "GPU": "-am62"
         },
         {
             "name": "amd64",
