@@ -1,18 +1,19 @@
 {
     "image": "/cog",
     "registry": "commontorizon",
-    "version": "4-rc",
+    "version": "next",
     "multiarch": true,
     "machines": [
         {
             "name": "generic",
             "arch": [
                 "arm",
-                "arm64"
+                "arm64",
+                "amd64"
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": ""
         },
         {
@@ -22,7 +23,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": "-imx8"
         },
         {
@@ -32,7 +33,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
+            "BASE_VERSION": "next",
             "GPU": "-am62"
         }
     ]
