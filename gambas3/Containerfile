@@ -143,6 +143,8 @@ RUN apt-get -q -y update && \
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     libgtk-3-0 \
     librsvg2-2 \
+    libcurl4-gnutls-dev \
+    gambas3-gb-gtk3-webview \
     && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 COPY --from=Build /install /install
