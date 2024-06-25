@@ -6,7 +6,7 @@ services:
       - REPO=commontorizon/commontorizon-manifest
       - ACCESS_TOKEN=${ACCESS_TOKEN}
     volumes:
-      - "$PWD:/workdir"
+      - "$WORKDIR:/workdir"
       - "$OSTREE_REPO:/ostree"
     working_dir: /workdir
     command:
