@@ -56,6 +56,7 @@ if (Test-Path $ContainerFileFolder) {
         Write-Host -ForegroundColor Yellow `
             "`tGPU: $($args.GPU)"
 
+        # get all archs
         $_archs = ""
         foreach ($arch in $args.arch) {
             Write-Host -ForegroundColor Yellow `
@@ -66,6 +67,27 @@ if (Test-Path $ContainerFileFolder) {
             } else {
                 $_archs = "linux/$arch"
             }
+        }
+
+        # query $env properties and set them as env variables
+        $args.PSObject.Properties | ForEach-Object {
+            $_env = [Environment]::GetEnvironmentVariable(
+                $_.Name.ToUpper()
+            )
+
+            if ($null -eq $_env) {
+                [Environment]::SetEnvironmentVariable(
+                    $_.Name.ToUpper(),
+                    $_.Value
+                )
+
+                $_env = [Environment]::GetEnvironmentVariable(
+                    $_.Name.ToUpper()
+                )
+            }
+
+            Write-Host -ForegroundColor Yellow `
+                "`t`t$($_.Name.ToUpper()): $($_env)"
         }
 
         docker buildx bake `
