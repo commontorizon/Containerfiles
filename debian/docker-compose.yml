@@ -1,0 +1,17 @@
+services:
+  debian:
+    build:
+      context: ./debian
+      dockerfile: Containerfile
+      args:
+        IMAGE_ARCH: ${IMAGE_ARCH}
+        IMAGE_REGISTRY: ${IMAGE_REGISTRY}
+        IMAGE_NAME: ${IMAGE_NAME}
+        IMAGE_VERSION: ${IMAGE_VERSION}
+        BASE_REGISTRY: ${BASE_REGISTRY}
+        BASE_IMAGE_ARM: ${BASE_IMAGE_ARM}
+        BASE_IMAGE_ARM64: ${BASE_IMAGE_ARM64}
+        BASE_IMAGE_AMD64: ${BASE_IMAGE_AMD64}
+        BASE_VERSION: ${BASE_VERSION}
+        GPU: ${GPU}
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}
