@@ -1,0 +1,52 @@
+# Copyright (c) 2024 Matheus Castello
+# SPDX-License-Identifier: MIT
+
+ARG NAME=
+ARG REGISTRY=
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG BASE_VERSION2=
+ARG BASE_IMAGE2=
+ARG GPU=
+
+# TODO: always sync with https://github.com/torizon/torizon-containers/blob/stable/debian-docker-images/imx/wayland-base/Dockerfile
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS WAYLAND
+
+ARG NAME
+ARG REGISTRY
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG BASE_VERSION2
+ARG BASE_IMAGE2
+ARG GPU
+
+LABEL org.opencontainers.image.source https://github.com/commontorizon/Containerfiles
+LABEL org.opencontainers.image.authors "microhobby <matheus@castello.eng>"
+LABEL org.opencontainers.image.title "Wayland Base"
+LABEL org.opencontainers.image.description "Wayland base image for running applications on Weston"
+LABEL org.opencontainers.image.licenses "MIT"
+
+# we need to run stuff only for the amd64 image
+RUN if [ "${NAME}" = "upstream" ]; then \
+    apt-get -y update && apt-get install -y --no-install-recommends \
+    apt-utils \
+    libwayland-client0 \
+    libwayland-server0 \
+    libglx-mesa0 \
+    libegl1 \
+    mesa-utils-extra \
+    && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/* ; \
+    fi
+
+# Make sure the user can access DRM and video devices
+RUN usermod -a -G video,render torizon
+
+ENV WAYLAND_USER="torizon"
+ENV XDG_RUNTIME_DIR="/tmp/1000-runtime-dir"
+ENV WAYLAND_DISPLAY="wayland-0"
+ENV DISPLAY=":0"
