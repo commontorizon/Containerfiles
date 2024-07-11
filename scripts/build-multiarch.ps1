@@ -46,6 +46,7 @@ if (Test-Path $ContainerFileFolder) {
         $env:BASE_IMAGE = $args.BASE_IMAGE
         $env:BASE_VERSION = $args.BASE_VERSION
         $env:GPU = $args.GPU
+        $env:NAME = $args.name
 
         Write-Host -ForegroundColor Yellow `
             "Building:"
