@@ -5,6 +5,7 @@ services:
       context: ./weston
       dockerfile: Containerfile
       args:
+        NAME: ${NAME}
         IMAGE_REGISTRY: ${IMAGE_REGISTRY}
         IMAGE_NAME: ${IMAGE_NAME}
         IMAGE_VERSION: ${IMAGE_VERSION}

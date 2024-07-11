@@ -1,13 +1,15 @@
 # Copyright (c) 2023 Matheus Castello
 # SPDX-License-Identifier: MIT
+ARG NAME
 ARG IMAGE_ARCH=
 ARG BASE_REGISTRY=
 ARG BASE_IMAGE=
 ARG BASE_VERSION=
 ARG GPU=
 
-FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston-upstream
 
+ARG NAME
 ARG IMAGE_ARCH
 ARG BASE_REGISTRY
 ARG BASE_IMAGE
@@ -36,10 +38,24 @@ RUN chmod +x /usr/bin/upstream-entry.sh && \
         mv /usr/bin/upstream-entry.sh /usr/bin/entry.sh ; \
         wget https://github.com/commontorizon/debian/releases/download/v0.0.0/weston_10.0.1-1_${IMAGE_ARCH}.deb && \
         wget https://github.com/commontorizon/debian/releases/download/v0.0.0/libweston-10-0_10.0.1-1_${IMAGE_ARCH}.deb && \
-        apt-get update && apt-get install -y --allow-downgrades ./*.deb && \
+        apt-get update && apt-get upgrade && apt-get install -y --allow-downgrades ./*.deb && \
         apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/* ; \
     fi
 
 WORKDIR /home/torizon
 
 ENTRYPOINT ["/usr/bin/entry.sh"]
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston-am62
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston-imx8
+
+ARG NAME
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG GPU
+
+# get the image that is needed for this one
+FROM weston-${NAME} AS weston
