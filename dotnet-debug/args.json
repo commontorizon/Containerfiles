@@ -1,0 +1,20 @@
+{
+    "image": "/dotnet-debug",
+    "registry": "commontorizon",
+    "version": "3-8.0",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "upstream",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/dotnet",
+            "BASE_VERSION": "3-8.0",
+            "GPU": ""
+        }
+    ]
+}

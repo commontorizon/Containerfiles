@@ -1,0 +1,33 @@
+# Copyright (c) 2024 Matheus Castello
+# SPDX-License-Identifier: MIT
+ARG NAME
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG GPU=
+
+# TODO: in sync with https://github.com/torizon/torizon-containers/blob/stable/debian-dotnet-development-images/debug/Dockerfile
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS dotnet-vsgdb
+
+ARG NAME
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG GPU
+ARG TARGETARCH
+
+RUN apt-get update && apt-get install -y \
+    --no-install-recommends --no-install-suggests \
+    ca-certificates \
+    curl \
+    && apt-get clean && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l /vsdbg
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS dotnet-debug
+
+COPY --from=dotnet-vsgdb /vsdbg /vsdbg
