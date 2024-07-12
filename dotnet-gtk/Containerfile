@@ -1,0 +1,53 @@
+# Copyright (c) 2024 Matheus Castello
+# SPDX-License-Identifier: MIT
+ARG NAME
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG BASE_IMAGE_DOTNET=
+ARG BASE_VERSION_DOTNET=
+ARG GPU=
+ARG DOTNET_SEMVER=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE_DOTNET}:${BASE_VERSION_DOTNET} AS dotnet-upstream
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS dotnet-gtk
+
+ARG NAME
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG GPU
+ARG DOTNET_SEMVER
+ARG TARGETARCH
+
+# integrate the dotnet stuff
+ENV DOTNET_ROOT=/dotnet
+ENV PATH=$PATH:/dotnet
+
+COPY --from=dotnet-upstream /dotnet /dotnet
+
+# install the gtk dependencies
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    libicu72 \
+    curl \
+    gettext \
+    apt-transport-https \
+    libx11-6 \
+	libunwind-13 \
+    icu-devtools \
+	libfontconfig1 \
+	libgtk-3-0 \
+    libgtk-3-bin \
+    libgtk-3-common \
+	libdrm2 \
+	libinput10 \
+    libssl3 \
+	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+# fix mime types
+RUN apt-get -y update && apt-get --reinstall install -y --no-install-recommends \
+    shared-mime-info \
+	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*

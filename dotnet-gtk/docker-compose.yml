@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  dotnet-gtk:
+    build:
+      context: ./dotnet-gtk
+      dockerfile: Containerfile
+      args:
+        NAME: ${NAME}
+        IMAGE_REGISTRY: ${IMAGE_REGISTRY}
+        IMAGE_NAME: ${IMAGE_NAME}
+        IMAGE_VERSION: ${IMAGE_VERSION}
+        BASE_REGISTRY: ${BASE_REGISTRY}
+        BASE_IMAGE: ${BASE_IMAGE}
+        BASE_VERSION: ${BASE_VERSION}
+        BASE_IMAGE_DOTNET: ${BASE_IMAGE_DOTNET}
+        BASE_VERSION_DOTNET: ${BASE_VERSION_DOTNET}
+        GPU: ${GPU}
+    image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}
