@@ -1,10 +1,11 @@
 version: "3.9"
 services:
-  gambas3:
+  cog:
     build:
       context: ./cog
       dockerfile: Containerfile
       args:
+        NAME: ${NAME}
         IMAGE_REGISTRY: ${IMAGE_REGISTRY}
         IMAGE_NAME: ${IMAGE_NAME}
         IMAGE_VERSION: ${IMAGE_VERSION}

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # default URL
-URL="www.toradex.com"
+URL="www.torizon.io"
 
 if [ ! -z "$1" ]; then
     URL=$1
