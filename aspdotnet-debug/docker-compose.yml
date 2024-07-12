@@ -1,8 +1,8 @@
 version: "3.9"
 services:
-  aspdotnet:
+  aspdotnet-debug:
     build:
-      context: ./aspdotnet
+      context: ./aspdotnet-debug
       dockerfile: Containerfile
       args:
         NAME: ${NAME}
@@ -13,5 +13,4 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         BASE_VERSION: ${BASE_VERSION}
         GPU: ${GPU}
-        DOTNET_SEMVER: ${DOTNET_SEMVER}
     image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}
