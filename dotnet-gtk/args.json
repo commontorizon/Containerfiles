@@ -1,7 +1,7 @@
 {
     "image": "/dotnet-gtk",
     "registry": "commontorizon",
-    "version": "3-3.0",
+    "version": "3-8.0",
     "multiarch": true,
     "machines": [
         {
