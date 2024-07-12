@@ -11,6 +11,8 @@ ARG BASE_REGISTRY=
 ARG BASE_IMAGE=
 ARG BASE_VERSION=
 
+ARG UPTANE_SIGN_VERSION=2.0.2
+
 USER root
 
 # Repo for setup
@@ -23,10 +25,15 @@ RUN apt-get update && apt-get install --no-install-recommends --no-install-sugge
     nano \
     git-lfs \
     python3-gi \
+    python3-pip \
     gir1.2-ostree-1.0 \
     jq \
     unzip \
     ostree \
+    wget \
+    openjdk-11-jre-headless \
+    pkg-config \
+    libcairo2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install repo
@@ -51,5 +58,22 @@ RUN unzip awscliv2.zip && ./aws/install && rm -rf awscliv2.zip ./aws
 # OSTree promotion script
 COPY ostree-repo-promotion.py /usr/bin
 RUN chmod +x /usr/bin/ostree-repo-promotion.py
+
+# Add scripts for delegation publishing
+COPY requirements.txt /tmp
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt \
+    && rm -rf /tmp/requirements.txt
+
+COPY create-delegations-from-ostree-repo.py /usr/bin
+RUN chmod +x /usr/bin/create-delegations-from-ostree-repo.py
+COPY sign-and-push-delegations.sh /usr/bin
+RUN chmod +x /usr/bin/sign-and-push-delegations.sh
+
+RUN wget https://github.com/uptane/ota-tuf/releases/download/v${UPTANE_SIGN_VERSION}/cli-${UPTANE_SIGN_VERSION}.tgz -P /tmp \
+    && tar xvf /tmp/cli-${UPTANE_SIGN_VERSION}.tgz -C /tmp \
+    && cp -a /tmp/uptane-sign/lib/. /usr/lib/ \
+    && mv /tmp/uptane-sign/bin/uptane-sign /usr/bin/uptane-sign \
+    && rm /tmp/cli-${UPTANE_SIGN_VERSION}.tgz \
+    && rm -rf /tmp/uptane-sign
 
 USER usersetup
