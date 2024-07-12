@@ -1,0 +1,21 @@
+{
+    "image": "/aspdotnet",
+    "registry": "commontorizon",
+    "version": "3-8.0",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "upstream",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/debian",
+            "BASE_VERSION": "3.3.0-bookworm",
+            "DOTNET_SEMVER": "8.0.7",
+            "GPU": ""
+        }
+    ]
+}
