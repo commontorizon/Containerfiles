@@ -1,29 +1,40 @@
 {
     "image": "/gambas3",
     "registry": "commontorizon",
-    "version": "3.17.90",
+    "version": "3.18.0",
     "multiarch": true,
     "machines": [
         {
-            "name": "generic",
+            "name": "upstream",
             "arch": [
                 "arm",
-                "arm64"
+                "arm64",
+                "amd64"
             ],
-            "BASE_REGISTRY": "torizon",
-            "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "3.0.8",
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base-gtk",
+            "BASE_VERSION": "3.3.0",
             "GPU": ""
         },
         {
-            "name": "arm64-vivante",
+            "name": "imx8",
             "arch": [
                 "arm64"
             ],
-            "BASE_REGISTRY": "torizon",
-            "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "3.0.8",
-            "GPU": "-vivante"
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base-gtk",
+            "BASE_VERSION": "3.3.0",
+            "GPU": "-imx8"
+        },
+        {
+            "name": "am62",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base-gtk",
+            "BASE_VERSION": "3.3.0",
+            "GPU": "-am62"
         }
     ]
 }
