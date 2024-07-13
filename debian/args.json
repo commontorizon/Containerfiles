@@ -19,7 +19,19 @@
             "GPU": ""
         },
         {
-            "name": "arm64-am62",
+            "name": "imx8",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "torizon",
+            "BASE_IMAGE_ARM": "/debian",
+            "BASE_IMAGE_ARM64": "/debian",
+            "BASE_IMAGE_AMD64": "/debian-upstream",
+            "BASE_VERSION": "next",
+            "GPU": "-imx8"
+        },
+        {
+            "name": "am62",
             "arch": [
                 "arm64"
             ],
