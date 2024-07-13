@@ -1,0 +1,73 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+ARG IMAGE_ARCH=
+ARG BASE_REGISTRY=
+ARG BASE_IMAGE=
+ARG BASE_VERSION=
+ARG GPU=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}:${BASE_VERSION} AS weston
+
+ARG IMAGE_ARCH
+ARG BASE_REGISTRY
+ARG BASE_IMAGE
+ARG BASE_VERSION
+ARG GPU
+
+# Make sure we don't get notifications we can't answer during building.
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Preconfigure keyboard layout
+RUN echo 'keyboard-configuration keyboard-configuration/layoutcode string us' | debconf-set-selections
+
+# install dependencies
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    xfce4 \
+    xfce4-power-manager \
+    udev \
+    kbd \
+    dbus-x11 \
+    xinit \
+    xserver-xorg \
+    gnome-settings-daemon \
+    onboard \
+    dconf-cli \
+    xfconf \
+    libglib2.0-bin \
+    at-spi2-core \
+    python3-pyatspi && \
+    # This will make sure that the xfce4-panel is not started
+    apt-get purge -y xfce4-panel && \
+    apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+# apply the configurations
+COPY ./conf/10-dri.conf /usr/share/X11/xorg.conf.d/10-dri.conf
+COPY ./conf/xfce/xfce4-desktop.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+COPY ./conf/xfce/xfce4-power-manager.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+COPY ./conf/xfce/xfce4-screensaver.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
+COPY ./conf/xfce/xfce4-desktop.xml /home/torizon/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+COPY ./conf/xfce/xfce4-power-manager.xml /home/torizon/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+COPY ./conf/xfce/xfce4-screensaver.xml /home/torizon/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
+COPY ./conf/.xinitrc /root/.xinitrc
+COPY ./conf/switchvt.pl /usr/bin/switchvt.pl
+COPY ./conf/dconf/user /root/.config/dconf/user
+COPY ./conf/dconf/user /home/torizon/.config/dconf/user
+COPY ./entry.sh /usr/bin/entry.sh
+COPY ./torizon-entry.sh /usr/bin/torizon-entry.sh
+
+RUN chmod +x /usr/bin/entry.sh && \
+    chmod +x /usr/bin/torizon-entry.sh && \
+    chmod +x /usr/bin/switchvt.pl
+
+HEALTHCHECK \
+    --interval=30s \
+    --timeout=30s \
+    --start-period=5s \
+    --retries=3 \
+    CMD [ "bash", "-c", "su -c 'DISPLAY=:0 xset -q || exit 1' torizon" ]
+
+ENTRYPOINT [ "/usr/bin/entry.sh" ]
+
+# FIXME: THIS SHOULD BE CONFIGURABLE IN SOME WAY
+# hide the mouse cursor for touch like experience
+CMD ["startx", "--", "-nocursor"]
