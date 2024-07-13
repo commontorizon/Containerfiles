@@ -72,20 +72,14 @@ if (Test-Path $ContainerFileFolder) {
 
         # query $env properties and set them as env variables
         $args.PSObject.Properties | ForEach-Object {
+            [Environment]::SetEnvironmentVariable(
+                $_.Name.ToUpper(),
+                $_.Value
+            )
+
             $_env = [Environment]::GetEnvironmentVariable(
                 $_.Name.ToUpper()
             )
-
-            if ($null -eq $_env) {
-                [Environment]::SetEnvironmentVariable(
-                    $_.Name.ToUpper(),
-                    $_.Value
-                )
-
-                $_env = [Environment]::GetEnvironmentVariable(
-                    $_.Name.ToUpper()
-                )
-            }
 
             Write-Host -ForegroundColor Yellow `
                 "`t`t$($_.Name.ToUpper()): $($_env)"
