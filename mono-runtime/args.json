@@ -1,40 +1,20 @@
 {
     "image": "/mono-runtime",
     "registry": "commontorizon",
-    "version": "6.12.0-rc",
+    "version": "3-6.12.0",
     "multiarch": true,
     "machines": [
         {
-            "name": "generic",
+            "name": "upstream",
             "arch": [
                 "arm",
                 "arm64",
                 "amd64"
             ],
-            "BASE_REGISTRY": "torizon",
-            "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/x-base",
+            "BASE_VERSION": "3.3.0",
             "GPU": ""
-        },
-        {
-            "name": "arm64-imx8",
-            "arch": [
-                "arm64"
-            ],
-            "BASE_REGISTRY": "torizon",
-            "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
-            "GPU": "-imx8"
-        },
-        {
-            "name": "arm64-am62",
-            "arch": [
-                "arm64"
-            ],
-            "BASE_REGISTRY": "torizon",
-            "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "4-rc",
-            "GPU": "-am62"
         }
     ]
 }

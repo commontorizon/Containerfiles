@@ -5,9 +5,8 @@ ARG IMAGE_ARCH=
 ARG BASE_REGISTRY=
 ARG BASE_IMAGE=
 ARG BASE_VERSION=
-ARG GPU=
 
-FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS SDK
+FROM ${BASE_REGISTRY}${BASE_IMAGE}:${BASE_VERSION} AS SDK
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -31,16 +30,13 @@ RUN apt-get -q -y update && \
 
 # install dependencies
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
-    libicu72 \
+    curl \
     gettext \
     apt-transport-https \
-    libx11-6 \
 	libunwind-13 \
     icu-devtools \
 	libfontconfig1 \
-	libgtk-3-0 \
-    libgtk-3-bin \
-    libgtk-3-common \
+    libgtk2.0-0 \
 	libdrm2 \
 	libinput10 \
     libdigest-md5-perl \
@@ -52,7 +48,3 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 RUN apt-get -y update && apt-get --reinstall install -y --no-install-recommends \
     shared-mime-info \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
-
-RUN printf "{\n  \"device\": \"/dev/dri/card1\",\n  \"outputs\": [ { \"name\": \"HDMI1\" } ],\n  \"hwcursor\": false\n}" > /etc/kms-imx6.conf \
-    && printf "{\n  \"hwcursor\": false\n}" > /etc/kms-imx8.conf \
-    && ln -s /etc/kms-imx8.conf /etc/kms-imx7.conf

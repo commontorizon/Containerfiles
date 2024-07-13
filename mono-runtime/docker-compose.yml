@@ -2,7 +2,7 @@ version: "3.9"
 services:
   gambas3:
     build:
-      context: ./mono-sdk
+      context: ./mono-runtime
       dockerfile: Containerfile
       args:
         IMAGE_REGISTRY: ${IMAGE_REGISTRY}
