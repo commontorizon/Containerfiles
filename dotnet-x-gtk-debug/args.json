@@ -1,0 +1,22 @@
+{
+    "image": "/dotnet-x-gtk-debug",
+    "registry": "commontorizon",
+    "version": "3-8.0",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "upstream",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/dotnet-x-gtk",
+            "BASE_VERSION": "3-8.0",
+            "BASE_IMAGE_DOTNET": "/dotnet-debug",
+            "BASE_VERSION_DOTNET": "3-8.0",
+            "GPU": ""
+        }
+    ]
+}
