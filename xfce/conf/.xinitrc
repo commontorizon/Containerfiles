@@ -16,4 +16,4 @@ while ! DISPLAY=:0 xset -q; do
 done
 
 echo "calling onboard ..."
-onboard
+DISPLAY=:0 onboard
