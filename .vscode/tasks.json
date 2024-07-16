@@ -52,6 +52,18 @@
                 "id": "flame"
             },
             "group": "build"
+        },
+        {
+            "label": "build-tools",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "torizon-yocto-github-runner",
+                "debian-cross-toolchain"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
         }
     ],
     "inputs": [
