@@ -1,0 +1,14 @@
+{
+    "image_prefix": "/torizon-yocto-github-runner",
+    "registry": "commontorizon",
+    "version": "6.7.0",
+    "multiarch": false,
+    "machines": [
+        {
+            "name": "dev",
+            "BASE_REGISTRY": "crops",
+            "BASE_IMAGE": "/poky",
+            "BASE_VERSION": "debian-11"
+        }
+    ]
+}
