@@ -4,7 +4,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "./scripts/build.ps1",
+            "command": "./.scripts/build.ps1",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "shell": {
@@ -30,7 +30,7 @@
         {
             "label": "build-multiarch",
             "type": "shell",
-            "command": "./scripts/build-multiarch.ps1",
+            "command": "./.scripts/build-multiarch.ps1",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "shell": {
@@ -52,7 +52,7 @@
                 "id": "flame"
             },
             "group": "build"
-        },
+        }
     ],
     "inputs": [
         {

@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # Copyright (c) 2023 Matheus Castello
 # SPDX-License-Identifier: MIT
 param(
