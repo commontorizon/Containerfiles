@@ -3,7 +3,10 @@
 # Copyright (c) 2023 Matheus Castello
 # SPDX-License-Identifier: MIT
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(
+        Mandatory=$true,
+        HelpMessage="Input the root path for the Containerfile and docker-compose.yml to be used"
+    )]
     [string]$ContainerFileFolder
 )
 
