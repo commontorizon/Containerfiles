@@ -1,46 +1,46 @@
 {
     "image_prefix": "/slint-base",
     "registry": "commontorizon",
-    "version": "3.3.0-bookworm-1.6.0",
+    "version": "3.3.0-bookworm-1.7.0",
     "multiarch": false,
     "machines": [
         {
             "name": "arm",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
+            "BASE_VERSION": "3.3.0-bookworm-1.7.0",
             "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm",
             "GPU": ""
         },
         {
             "name": "arm64",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
+            "BASE_VERSION": "3.3.0-bookworm-1.7.0",
             "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm64",
             "GPU": ""
         },
         {
             "name": "arm64",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
+            "BASE_VERSION": "3.3.0-bookworm-1.7.0",
             "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "arm64",
-            "GPU": "-vivante"
+            "GPU": "-imx8"
         },
         {
             "name": "amd64",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/slint-sdk",
             "BASE_IMAGE2": "/wayland-base",
-            "BASE_VERSION": "3.3.0-bookworm-1.6.0",
-            "BASE_VERSION2": "next",
+            "BASE_VERSION": "3.3.0-bookworm-1.7.0",
+            "BASE_VERSION2": "3.3.0",
             "IMAGE_ARCH": "amd64",
             "GPU": ""
         }
