@@ -99,10 +99,10 @@ ENV CMAKE_GENERATOR=Ninja
 
 # Build Slint
 ##
-# ⚠️ BUILDING SLINT v1.7.0
+# ⚠️ BUILDING SLINT v1.7.1
 # ⚠️ Check available versions here: https://github.com/slint-ui/slint/releases
 ##
-RUN git clone https://github.com/slint-ui/slint --depth 1 --branch v1.7.0 /slint
+RUN git clone https://github.com/slint-ui/slint --depth 1 --branch v1.7.1 /slint
 RUN RUST_TOOLCHAIN_ARCH=$(cat /rust-toolchain-arch.txt) && \
     cd /slint \
     && mkdir build \
