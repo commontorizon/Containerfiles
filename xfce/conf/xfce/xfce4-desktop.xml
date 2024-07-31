@@ -17,6 +17,28 @@
             </property>
         </property>
       </property>
+      <property name="Virtual-0" type="empty">
+        <property name="workspace0" type="empty">
+            <property name="image-style" type="int" value="0"/>
+            <property name="rgba1" type="array">
+              <value type="double" value="0.048360"/>
+              <value type="double" value="0.017600"/>
+              <value type="double" value="0.586667"/>
+              <value type="double" value="1.000000"/>
+            </property>
+        </property>
+      </property>
+      <property name="Virtual-1" type="empty">
+        <property name="workspace0" type="empty">
+            <property name="image-style" type="int" value="0"/>
+            <property name="rgba1" type="array">
+              <value type="double" value="0.048360"/>
+              <value type="double" value="0.017600"/>
+              <value type="double" value="0.586667"/>
+              <value type="double" value="1.000000"/>
+            </property>
+        </property>
+      </property>
       <property name="monitor1" type="empty">
         <property name="workspace0" type="empty">
             <property name="image-style" type="int" value="0"/>
