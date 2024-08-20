@@ -8,7 +8,8 @@
             "name": "upstream",
             "arch": [
                 "arm",
-                "arm64"
+                "arm64",
+                "amd64"
             ],
             "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/wayland-base",

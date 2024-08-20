@@ -13,4 +13,5 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         BASE_VERSION: ${BASE_VERSION}
         GPU: ${GPU}
+        BASE_GPU: ${BASE_GPU}
     image: ${IMAGE_REGISTRY}${IMAGE_NAME}${GPU}:${IMAGE_VERSION}
