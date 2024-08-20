@@ -7,7 +7,12 @@ param(
         Mandatory=$true,
         HelpMessage="Input the root path for the Containerfile and docker-compose.yml to be used"
     )]
-    [string]$ContainerFileFolder
+    [string]$ContainerFileFolder,
+    [Parameter(
+        Mandatory=$false,
+        HelpMessage="Flag to push the build to Dockerhub or just test if it is building locally"
+    )]
+    [bool]$PushToDockerhub = $false
 )
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
@@ -24,7 +29,9 @@ $SCRIPT_PATH = Split-Path -Parent $MyInvocation.MyCommand.Definition
 . (Join-Path $SCRIPT_PATH ./sec.ps1)
 
 Binfmt
-DockerRegistryLogin
+if ($PushToDockerhub) {
+    DockerRegistryLogin
+}
 
 if (Test-Path $ContainerFileFolder) {
     $env:CONTAINER_IMAGE_NAME = Split-Path -Parent $ContainerFileFolder
@@ -90,10 +97,16 @@ if (Test-Path $ContainerFileFolder) {
                 "`t`t$($_.Name.ToUpper()): $($_env)"
         }
 
-        docker buildx bake `
+        if ($PushToDockerhub) {
+            docker buildx bake `
             -f $ContainerFileFolder/docker-compose.yml `
             --set *.platform=$_archs `
             --push
+        } else {
+            docker buildx bake `
+            -f $ContainerFileFolder/docker-compose.yml `
+            --set *.platform=$_archs
+        }
 
     }
 } else {
