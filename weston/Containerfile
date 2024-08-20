@@ -6,8 +6,9 @@ ARG BASE_REGISTRY=
 ARG BASE_IMAGE=
 ARG BASE_VERSION=
 ARG GPU=
+ARG BASE_GPU=
 
-FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS weston-upstream
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS weston-upstream
 
 ARG NAME
 ARG IMAGE_ARCH
@@ -15,6 +16,7 @@ ARG BASE_REGISTRY
 ARG BASE_IMAGE
 ARG BASE_VERSION
 ARG GPU
+ARG BASE_GPU
 
 # This is only a fix for the upstream torizon/weston
 # that is not running the weston as torizon user

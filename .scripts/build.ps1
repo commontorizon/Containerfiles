@@ -12,7 +12,12 @@ param(
         Mandatory=$false,
         HelpMessage="Boolean to switch if the build should or not use cache"
     )]
-    [bool]$NoCache = $false
+    [bool]$NoCache = $false,
+    [Parameter(
+        Mandatory=$false,
+        HelpMessage="Flag to push the build to Dockerhub or just test if it is building locally"
+    )]
+    [bool]$PushToDockerhub = $false
 )
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
@@ -49,7 +54,9 @@ function _checkEnvVariable {
 }
 
 Binfmt
-DockerRegistryLogin
+if ($PushToDockerhub) {
+    DockerRegistryLogin
+}
 
 if (Test-Path $ContainerFileFolder) {
     # read metadata
@@ -121,7 +128,9 @@ if (Test-Path $ContainerFileFolder) {
               docker compose build
             }
 
-            docker compose push
+            if ($PushToDockerhub) {
+                docker compose push
+            }
         }
     } catch {
         Set-Location -

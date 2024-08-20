@@ -14,7 +14,8 @@
             "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/debian",
             "BASE_VERSION": "3.3.0-bookworm",
-            "GPU": ""
+            "GPU": "",
+            "BASE_GPU": ""
         },
         {
             "name": "imx8",
@@ -23,8 +24,9 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
-            "BASE_VERSION": "next",
-            "GPU": "-imx8"
+            "BASE_VERSION": "3",
+            "GPU": "-imx8",
+            "BASE_GPU": "-vivante"
         },
         {
             "name": "am62",
@@ -34,7 +36,8 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/wayland-base",
             "BASE_VERSION": "3",
-            "GPU": "-am62"
+            "GPU": "-am62",
+            "BASE_GPU": "-am62"
         }
     ]
 }

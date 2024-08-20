@@ -10,10 +10,11 @@ ARG BASE_VERSION=
 ARG BASE_VERSION2=
 ARG BASE_IMAGE2=
 ARG GPU=
+ARG BASE_GPU=
 
 # TODO: always sync with https://github.com/torizon/torizon-containers/blob/stable/debian-docker-images/imx/wayland-base/Dockerfile
 
-FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS WAYLAND
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS WAYLAND
 
 ARG NAME
 ARG REGISTRY
@@ -24,6 +25,7 @@ ARG BASE_VERSION
 ARG BASE_VERSION2
 ARG BASE_IMAGE2
 ARG GPU
+ARG BASE_GPU
 
 LABEL org.opencontainers.image.source https://github.com/commontorizon/Containerfiles
 LABEL org.opencontainers.image.authors "microhobby <matheus@castello.eng>"
