@@ -183,6 +183,19 @@
                 "id": "flame"
             },
             "group": "build"
+        },
+        {
+            "label": "build-gambas",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "gambas3"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
         }
     ],
     "inputs": [
