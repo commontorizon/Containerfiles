@@ -129,6 +129,7 @@ if (Test-Path $ContainerFileFolder) {
             }
 
             if ($PushToDockerhub) {
+                DockerRegistryLogin
                 docker compose push
             }
         }
