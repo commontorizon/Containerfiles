@@ -8,13 +8,21 @@ param(
         Mandatory=$false,
         HelpMessage="Flag to push the build to Dockerhub or just test if it is building locally"
     )]
-    [bool]$PushToDockerhub = $false,
+    [string]$PushToDockerhub = "false",
     [Parameter(
+        ValueFromRemainingArguments=$true,
         Mandatory=$true,
         HelpMessage="List of image names (folders) that should have the image built"
     )]
     [string[]]$ImageNames
 )
+
+if ($PushToDockerhub -ne "true" -and $PushToDockerhub -ne "false") {
+    Write-Error "Invalid value for PushToDockerhub. It should be 'true' or 'false'"
+    exit 69
+} else {
+    $_PushToDockerhub = $PushToDockerhub -eq "true"
+}
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
@@ -33,8 +41,8 @@ foreach ($_path in $ImageNames) {
             | ConvertFrom-Json
 
     if ($metadata.multiarch -eq $true) {
-        . (Join-Path $SCRIPT_PATH ./build-multiarch.ps1) -ContainerFileFolder $_path -PushToDockerhub $PushToDockerhub
+        . (Join-Path $SCRIPT_PATH ./build-multiarch.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub
     } else {
-        . (Join-Path $SCRIPT_PATH ./build.ps1) -ContainerFileFolder $_path -PushToDockerhub $PushToDockerhub
+        . (Join-Path $SCRIPT_PATH ./build.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub
     }
 }

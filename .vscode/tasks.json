@@ -58,12 +58,32 @@
             "type": "shell",
             "command": "./.scripts/pipeline.ps1",
             "args": [
+                "-PushToDockerhub", "true",
                 "torizon-yocto-github-runner",
                 "debian-cross-toolchain"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-base",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "debian",
+                "wayland-base",
+                "x-base"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
         }
     ],
     "inputs": [
