@@ -13,7 +13,7 @@
             ],
             "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/debian",
-            "BASE_VERSION": "3.3.0-bookworm",
+            "BASE_VERSION": "3.3.1-bookworm",
             "DOTNET_SEMVER": "8.0.7",
             "GPU": ""
         }

@@ -84,6 +84,105 @@
                 "id": "flame"
             },
             "group": "build"
+        },
+        {
+            "label": "build-dotnet-base",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "dotnet",
+                "dotnet-debug"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-graphical-compositors",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "wayland-base-gtk",
+                "weston",
+                "xfce"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-dotnet-graphical",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "dotnet-gtk",
+                "dotnet-x-gtk"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-slint",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "slint-sdk",
+                "slint-base"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-mono",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "mono-sdk",
+                "mono-runtime"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-web",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "aspdotnet",
+                "cog"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build-qt",
+            "type": "shell",
+            "command": "./.scripts/pipeline.ps1",
+            "args": [
+                "-PushToDockerhub", "true",
+                "qt5-wayland",
+                "qt6-wayland"
+            ],
+            "icon": {
+                "id": "flame"
+            },
+            "group": "build"
         }
     ],
     "inputs": [

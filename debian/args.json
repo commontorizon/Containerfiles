@@ -1,7 +1,7 @@
 {
     "image": "/debian",
     "registry": "commontorizon",
-    "version": "3.3.0-bookworm",
+    "version": "3.3.1-bookworm",
     "multiarch": true,
     "machines": [
         {
