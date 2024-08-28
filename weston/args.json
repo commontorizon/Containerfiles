@@ -1,7 +1,7 @@
 {
     "image": "/weston",
     "registry": "commontorizon",
-    "version": "3.3.1",
+    "version": "3.3.2",
     "multiarch": true,
     "machines": [
         {
@@ -13,7 +13,7 @@
             ],
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE": "/weston",
-            "BASE_VERSION": "rc",
+            "BASE_VERSION": "3",
             "GPU": "",
             "BASE_GPU": ""
         },
