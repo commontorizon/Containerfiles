@@ -102,6 +102,16 @@ init_xdg
 ARGS="$@"
 export ARGS
 
+# we are in a imx6?
+# if so, we need to rm the /usr/share/X11/xorg.conf.d/10-dri.conf
+# because it is not compatible with the imx6
+if [ -d /proc/device-tree ]; then
+	MODEL=$(tr -d '\0' </proc/device-tree/model)
+	if [[ $MODEL == *"iMX6"* ]]; then
+		rm -f /usr/share/X11/xorg.conf.d/10-dri.conf
+	fi
+fi
+
 # now we can execute the torizon-entry.sh
 # as torizon user
 su torizon -c "/usr/bin/torizon-entry.sh $ARGS"
