@@ -28,7 +28,7 @@ function Env {
 function Binfmt {
     # firts of all we need to run torizon/binfmt
     # to enable qemu for arm64 and arm32
-    docker run --rm --privileged torizon/binfmt
+    docker run --rm --privileged commontorizon/binfmt
 }
 
 function BuildxMultiArchSetup {
