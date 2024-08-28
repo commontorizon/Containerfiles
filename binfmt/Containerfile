@@ -1,4 +1,4 @@
-FROM debian:bullseye AS qemu
+FROM debian:bookworm AS qemu
 
 RUN apt-get update && apt-get install -y qemu-user-static && \
     mv /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64 && \
@@ -15,7 +15,7 @@ RUN dpkg --add-architecture i386 && \
     mv /usr/bin/qemu-arm-static /usr/bin/qemu-arm && \
     rm /usr/bin/qemu-*-static
 
-FROM debian:sid AS mirror
+FROM debian:bookworm AS mirror
 
 RUN apt-get update && apt-get install -y golang-go musl-dev
 
