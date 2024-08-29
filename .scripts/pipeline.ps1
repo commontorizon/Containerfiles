@@ -10,6 +10,11 @@ param(
     )]
     [string]$PushToDockerhub = "false",
     [Parameter(
+        Mandatory=$false,
+        HelpMessage="Flag to set if the build should or not use cache"
+    )]
+    [string]$NoCache = "false",
+    [Parameter(
         ValueFromRemainingArguments=$true,
         Mandatory=$true,
         HelpMessage="List of image names (folders) that should have the image built"
@@ -23,6 +28,14 @@ if ($PushToDockerhub -ne "true" -and $PushToDockerhub -ne "false") {
 } else {
     $_PushToDockerhub = $PushToDockerhub -eq "true"
 }
+
+if ($NoCache -ne "true" -and $NoCache -ne "false") {
+    Write-Error "Invalid value for PushToDockerhub. It should be 'true' or 'false'"
+    exit 69
+} else {
+    $_NoCache = $NoCache -eq "true"
+}
+
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
@@ -41,8 +54,8 @@ foreach ($_path in $ImageNames) {
             | ConvertFrom-Json
 
     if ($metadata.multiarch -eq $true) {
-        . (Join-Path $SCRIPT_PATH ./build-multiarch.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub
+        . (Join-Path $SCRIPT_PATH ./build-multiarch.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub -NoCache $_NoCache
     } else {
-        . (Join-Path $SCRIPT_PATH ./build.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub
+        . (Join-Path $SCRIPT_PATH ./build.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub -NoCache $_NoCache
     }
 }

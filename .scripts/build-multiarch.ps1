@@ -12,7 +12,12 @@ param(
         Mandatory=$false,
         HelpMessage="Flag to push the build to Dockerhub or just test if it is building locally"
     )]
-    [bool]$PushToDockerhub = $false
+    [bool]$PushToDockerhub = $false,
+    [Parameter(
+        Mandatory=$false,
+        HelpMessage="Flag to set if the build should or not use cache"
+    )]
+    [bool]$NoCache = $false
 )
 
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
@@ -97,11 +102,22 @@ if (Test-Path $ContainerFileFolder) {
                 "`t`t$($_.Name.ToUpper()): $($_env)"
         }
 
-        if ($PushToDockerhub) {
+        if ($PushToDockerhub -and $NoCache) {
+            docker buildx bake `
+            -f $ContainerFileFolder/docker-compose.yml `
+            --set *.platform=$_archs `
+            --no-cache `
+            --push
+        } elseif ($PushToDockerhub) {
             docker buildx bake `
             -f $ContainerFileFolder/docker-compose.yml `
             --set *.platform=$_archs `
             --push
+        } elseif ($NoCache) {
+            docker buildx bake `
+            -f $ContainerFileFolder/docker-compose.yml `
+            --set *.platform=$_archs `
+            --no-cache
         } else {
             docker buildx bake `
             -f $ContainerFileFolder/docker-compose.yml `
