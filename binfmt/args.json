@@ -1,7 +1,7 @@
 {
     "image": "/binfmt",
     "registry": "commontorizon",
-    "version": "latest",
+    "version": "9.0.2",
     "multiarch": "true",
     "machines": [
         {
