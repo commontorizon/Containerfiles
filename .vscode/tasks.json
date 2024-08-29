@@ -92,7 +92,9 @@
             "args": [
                 "-PushToDockerhub", "true",
                 "dotnet",
-                "dotnet-debug"
+                "dotnet-debug",
+                "aspdotnet",
+                "aspdotnet-debug"
             ],
             "icon": {
                 "id": "flame"
@@ -162,7 +164,6 @@
             "command": "./.scripts/pipeline.ps1",
             "args": [
                 "-PushToDockerhub", "true",
-                "aspdotnet",
                 "cog"
             ],
             "icon": {

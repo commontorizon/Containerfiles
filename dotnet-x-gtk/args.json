@@ -1,7 +1,7 @@
 {
     "image": "/dotnet-x-gtk",
     "registry": "commontorizon",
-    "version": "3-8.0",
+    "version": "3.1-8.0",
     "multiarch": true,
     "machines": [
         {
@@ -15,7 +15,7 @@
             "BASE_IMAGE": "/x-base",
             "BASE_VERSION": "3.3.1",
             "BASE_IMAGE_DOTNET": "/dotnet",
-            "BASE_VERSION_DOTNET": "3-8.0",
+            "BASE_VERSION_DOTNET": "3.1-8.0",
             "GPU": ""
         }
     ]
