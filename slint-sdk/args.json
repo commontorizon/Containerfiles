@@ -1,7 +1,7 @@
 {
     "image_prefix": "/slint-sdk",
     "registry": "commontorizon",
-    "version": "3.3.1-bookworm-1.7.2",
+    "version": "3.3.1-bookworm-1.8.0",
     "multiarch": false,
     "machines": [
         {
