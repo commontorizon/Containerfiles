@@ -1,0 +1,40 @@
+{
+    "image": "/cog-media",
+    "registry": "commontorizon",
+    "version": "3.3.1",
+    "multiarch": true,
+    "machines": [
+        {
+            "name": "upstream",
+            "arch": [
+                "arm",
+                "arm64",
+                "amd64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "3.3.1",
+            "GPU": ""
+        },
+        {
+            "name": "imx8",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "3.3.1",
+            "GPU": "-imx8"
+        },
+        {
+            "name": "am62",
+            "arch": [
+                "arm64"
+            ],
+            "BASE_REGISTRY": "commontorizon",
+            "BASE_IMAGE": "/wayland-base",
+            "BASE_VERSION": "3.3.1",
+            "GPU": "-am62"
+        }
+    ]
+}
