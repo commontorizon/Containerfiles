@@ -26,12 +26,40 @@ ARG BASE_VERSION=
 ##
 ARG GPU=
 
-FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Builder
 
+# Install necessary packages for building Cog
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends \
-    cog && \
+    libwpewebkit-1.1-dev \
+    devscripts \
+    curl \
+    debhelper \
+    libwpebackend-fdo-1.0-dev \
+    meson \
+    libmanette-0.2-dev \
+    libinput-dev \
+    libgbm-dev \
+    libdrm-dev \
+    debian-keyring && \
     apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+# Download the Cog source package
+RUN dget http://deb.debian.org/debian/pool/main/c/cog/cog_0.18.4-1.dsc
+
+# Change to the Cog source directory
+WORKDIR cog-0.18.4
+
+# Build the Cog package
+RUN debian/rules binary
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
+
+# Copy the .deb package from the Builder stage
+COPY --from=builder /cog-0.18.4/cog_0.18.4-1_*.deb /tmp/
+
+# Install the generated .deb package
+RUN apt install -y /tmp/cog_0.18.4-1_*.deb && rm /tmp/cog_0.18.4-1_*.deb
 
 COPY start-cog.sh /usr/bin/start-browser
 COPY wait4.sh /usr/bin/wait4
