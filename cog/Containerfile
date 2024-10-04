@@ -32,7 +32,7 @@ FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Builder
 
 # Install necessary packages for building Cog
 RUN apt-get -y update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y \
     libwpewebkit-1.1-dev \
     devscripts \
     curl \
