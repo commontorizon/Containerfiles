@@ -26,6 +26,8 @@ ARG BASE_VERSION=
 ##
 ARG GPU=
 
+ARG COG_VERSION=0.18.4
+
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Builder
 
 # Install necessary packages for building Cog
@@ -45,10 +47,10 @@ RUN apt-get -y update && \
     apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # Download the Cog source package
-RUN dget http://deb.debian.org/debian/pool/main/c/cog/cog_0.18.4-1.dsc
+RUN dget http://deb.debian.org/debian/pool/main/c/cog/cog_${COG_VERSION}-1.dsc
 
 # Change to the Cog source directory
-WORKDIR cog-0.18.4
+WORKDIR cog-${COG_VERSION}
 
 # Build the Cog package
 RUN debian/rules binary
@@ -56,10 +58,10 @@ RUN debian/rules binary
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
 
 # Copy the .deb package from the Builder stage
-COPY --from=builder /cog-0.18.4/cog_0.18.4-1_*.deb /tmp/
+COPY --from=builder /cog-${COG_VERSION}/cog_${COG_VERSION}-1_${IMAGE_ARCH}.deb /tmp/
 
 # Install the generated .deb package
-RUN apt install -y /tmp/cog_0.18.4-1_*.deb && rm /tmp/cog_0.18.4-1_*.deb
+RUN apt install -y /tmp/cog_${COG_VERSION}-1_${IMAGE_ARCH}.deb && rm /tmp/cog_${COG_VERSION}-1_${IMAGE_ARCH}.deb
 
 COPY start-cog.sh /usr/bin/start-browser
 COPY wait4.sh /usr/bin/wait4
