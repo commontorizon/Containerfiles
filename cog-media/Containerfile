@@ -1,0 +1,54 @@
+# Copyright (c) 2023 Matheus Castello
+# SPDX-License-Identifier: MIT
+
+##
+# Board architecture
+##
+ARG IMAGE_ARCH=
+
+##
+# The registry and the namespace
+##
+ARG BASE_REGISTRY=
+
+##
+# Base container image name
+##
+ARG BASE_IMAGE=
+
+##
+# Base container version
+##
+ARG BASE_VERSION=
+
+##
+# GPU prefix
+##
+ARG GPU=
+
+FROM ${BASE_REGISTRY}${BASE_IMAGE}${GPU}:${BASE_VERSION} AS Deploy
+
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    gstreamer1.0-alsa \
+    cog && \
+    apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+
+COPY start-cog.sh /usr/bin/start-browser
+COPY wait4.sh /usr/bin/wait4
+
+RUN chmod +x /usr/bin/start-browser && \
+    chmod +x /usr/bin/wait4
+
+USER torizon
+
+ENV DISPLAY=:0
+ENV COG_PLATFORM_WL_VIEW_FULLSCREEN=1
+
+ENTRYPOINT ["/usr/bin/start-browser"]
+CMD ["http://www.torizon.io"]
