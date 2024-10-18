@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "build",
+            "hide": true,
             "type": "shell",
             "command": "./.scripts/build.ps1",
             "options": {
@@ -29,6 +30,7 @@
         },
         {
             "label": "build-multiarch",
+            "hide": true,
             "type": "shell",
             "command": "./.scripts/build-multiarch.ps1",
             "options": {
@@ -60,7 +62,12 @@
             "args": [
                 "-PushToDockerhub", "true",
                 "torizon-yocto-github-runner",
-                "debian-cross-toolchain"
+                "cross-toolchain",
+                "binfmt",
+                "bsp-builder",
+                "deb-builder",
+                "tcb",
+                "torizon"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -123,7 +130,9 @@
             "args": [
                 "-PushToDockerhub", "true",
                 "dotnet-gtk",
-                "dotnet-x-gtk"
+                "dotnet-gtk-debug",
+                "dotnet-x-gtk",
+                "dotnet-x-gtk-debug"
             ],
             "icon": {
                 "id": "flame"

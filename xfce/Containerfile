@@ -41,7 +41,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # apply the configurations
-COPY ./conf/10-dri.conf /usr/share/X11/xorg.conf.d/10-dri.conf
+# COPY ./conf/10-dri.conf /usr/share/X11/xorg.conf.d/10-dri.conf
+COPY ./conf/10-generic.conf /usr/share/X11/xorg.conf.d/10-generic.conf
 COPY ./conf/xfce/xfce4-desktop.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 COPY ./conf/xfce/xfce4-power-manager.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
 COPY ./conf/xfce/xfce4-screensaver.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml

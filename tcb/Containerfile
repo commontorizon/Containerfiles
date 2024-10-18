@@ -28,7 +28,7 @@ RUN if [ "$APT_PROXY" != "" ]; then \
 
 # Install runtime dependencies. Install them in the common part in order to refrain
 # installing them twice (build-dep would install them too)
-# This are all dependencies from the regular Debian OSTree packages except
+# These are all dependencies from the regular Debian OSTree packages except
 # AVAHI.
 RUN apt-get -q -y update && apt-get -q -y --no-install-recommends install \
     libarchive13 libassuan0 libfuse2 libglib2.0-0  libgpg-error0  libgpgme11 \
@@ -61,8 +61,12 @@ WORKDIR /root
 RUN git clone --recursive https://github.com/uptane/aktualizr.git && cd aktualizr && \
     git checkout 2cb76c46ef0106be90c579b3108817dd26b7c1c5
 
+# Get tuf cli
+RUN cd aktualizr && curl -L -O https://github.com/uptane/ota-tuf/releases/download/v0.8.0/cli-0.8.0.tgz
+
 RUN cd aktualizr && mkdir build/ && cd build/ && \
     cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_DEB=ON -DBUILD_SOTA_TOOLS=ON \
+          -DGARAGE_SIGN_ARCHIVE=../cli-0.8.0.tgz \
           -DSOTA_DEBIAN_PACKAGE_DEPENDS=openjdk-11-jre-headless \
           -DBUILD_OSTREE=ON \
           -DWARNING_AS_ERROR=OFF .. && \
@@ -72,14 +76,15 @@ FROM sota-builder AS source-code
 
 # clone the project
 WORKDIR /project
-RUN git clone https://github.com/commontorizon/torizoncore-builder.git .
+RUN git clone -b "castello/raw-bundle" https://github.com/commontorizon/torizoncore-builder.git . && \
+    git checkout f96a46d3f36d59ccd24183610f171ab47535a6be
 
 FROM common-base AS tcbuilder-base
 
 RUN apt-get -q -y update && apt-get -q -y --no-install-recommends install \
     python3 python3-pip python3-setuptools python3-wheel python3-gi \
     file curl gzip xz-utils lz4 lzop zstd cpio jq acl libmpc-dev \
-    device-tree-compiler cpp  bzip2 flex bison kmod libgmp3-dev bc \
+    device-tree-compiler cpp bzip2 flex bison kmod libgmp-dev bc \
     && apt-get -q -y --no-install-recommends install python3-paramiko \
     python3-dnspython python3-ifaddr python3-git avahi-daemon \
     && apt-get -q -y --no-install-recommends install libguestfs-tools \

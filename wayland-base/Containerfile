@@ -12,8 +12,6 @@ ARG BASE_IMAGE2=
 ARG GPU=
 ARG BASE_GPU=
 
-# TODO: always sync with https://github.com/torizon/torizon-containers/blob/stable/debian-docker-images/imx/wayland-base/Dockerfile
-
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS WAYLAND
 
 ARG NAME
@@ -27,13 +25,7 @@ ARG BASE_IMAGE2
 ARG GPU
 ARG BASE_GPU
 
-LABEL org.opencontainers.image.source https://github.com/commontorizon/Containerfiles
-LABEL org.opencontainers.image.authors "microhobby <matheus@castello.eng>"
-LABEL org.opencontainers.image.title "Wayland Base"
-LABEL org.opencontainers.image.description "Wayland base image for running applications on Weston"
-LABEL org.opencontainers.image.licenses "MIT"
-
-# we need to run stuff only for the amd64 image
+# we need to run stuff only for upstream
 RUN if [ "${NAME}" = "upstream" ]; then \
     apt-get -y update && apt-get install -y --no-install-recommends \
     apt-utils \

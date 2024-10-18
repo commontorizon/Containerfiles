@@ -1,7 +1,7 @@
 {
     "image": "/x-base",
     "registry": "commontorizon",
-    "version": "3.3.1",
+    "version": "4.0.0",
     "multiarch": true,
     "machines": [
         {
@@ -13,7 +13,7 @@
             ],
             "BASE_REGISTRY": "commontorizon",
             "BASE_IMAGE": "/debian",
-            "BASE_VERSION": "3.3.1-bookworm"
+            "BASE_VERSION": "4.0.0"
         }
     ]
 }

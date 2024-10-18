@@ -10,44 +10,6 @@ ARG BASE_GPU=
 
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS weston-upstream
 
-ARG NAME
-ARG IMAGE_ARCH
-ARG BASE_REGISTRY
-ARG BASE_IMAGE
-ARG BASE_VERSION
-ARG GPU
-ARG BASE_GPU
-
-# This is only a fix for the upstream torizon/weston
-# that is not running the weston as torizon user
-COPY upstream-entry.sh /usr/bin/upstream-entry.sh
-RUN chmod +x /usr/bin/upstream-entry.sh && \
-    usermod -a -G weston-launch torizon && \
-    usermod -a -G torizon torizon && \
-    # fixup the arch
-    IMAGE_ARCH="$(arch)" && \
-    if [ "${IMAGE_ARCH}" = "x86_64" ]; then \
-        IMAGE_ARCH="amd64" ; \
-    fi && \
-    if [ "${IMAGE_ARCH}" = "aarch64" ]; then \
-        IMAGE_ARCH="arm64" ; \
-    fi && \
-    if [ "${IMAGE_ARCH}" = "armv7l" ]; then \
-        IMAGE_ARCH="armhf" ; \
-    fi && \
-    # if the GPU is not set, we replace the entry.sh and install custom weston
-    if [ -z "${GPU}" ]; then \
-        mv /usr/bin/upstream-entry.sh /usr/bin/entry.sh ; \
-        wget https://github.com/commontorizon/debian/releases/download/v0.0.0/weston_10.0.1-1_${IMAGE_ARCH}.deb && \
-        wget https://github.com/commontorizon/debian/releases/download/v0.0.0/libweston-10-0_10.0.1-1_${IMAGE_ARCH}.deb && \
-        apt-get update && apt-get upgrade && apt-get install -y --allow-downgrades ./*.deb && \
-        apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/* ; \
-    fi
-
-WORKDIR /home/torizon
-
-ENTRYPOINT ["/usr/bin/entry.sh"]
-
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS weston-am62
 
 FROM ${BASE_REGISTRY}${BASE_IMAGE}${BASE_GPU}:${BASE_VERSION} AS weston-imx8
@@ -62,3 +24,22 @@ ARG BASE_GPU
 
 # get the image that is needed for this one
 FROM weston-${NAME} AS weston
+
+COPY ./conf/weston.ini /etc/xdg/weston/weston.ini
+COPY ./conf/weston-dev.ini /etc/xdg/weston-dev/weston.ini
+COPY entry.sh /usr/bin/entry.sh
+COPY imx8.deb /imx8.deb
+
+RUN if [ "$NAME" = "imx8" ]; then \
+    chmod +x /usr/bin/entry.sh && \
+    apt-get update && \
+    apt-get install -y \
+    --allow-downgrades \
+    /imx8.deb \
+    libgl-dev && \
+    apt-get --fix-broken install && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean; \
+    fi
+
+RUN rm /imx8.deb

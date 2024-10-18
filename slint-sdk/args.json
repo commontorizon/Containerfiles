@@ -1,30 +1,30 @@
 {
     "image_prefix": "/slint-sdk",
     "registry": "commontorizon",
-    "version": "3.3.1-bookworm-1.8.0",
+    "version": "4.0.0-1.8.0",
     "multiarch": false,
     "machines": [
         {
             "name": "amd64",
             "BASE_REGISTRY": "commontorizon",
-            "BASE_IMAGE": "/debian-cross-toolchain",
-            "BASE_VERSION": "3.3.1",
+            "BASE_IMAGE": "/cross-toolchain",
+            "BASE_VERSION": "4.0.0",
             "IMAGE_ARCH": "amd64",
             "GPU": ""
         },
         {
             "name": "arm",
             "BASE_REGISTRY": "commontorizon",
-            "BASE_IMAGE": "/debian-cross-toolchain",
-            "BASE_VERSION": "3.3.1",
+            "BASE_IMAGE": "/cross-toolchain",
+            "BASE_VERSION": "4.0.0",
             "IMAGE_ARCH": "arm",
             "GPU": ""
         },
         {
             "name": "arm64",
             "BASE_REGISTRY": "commontorizon",
-            "BASE_IMAGE": "/debian-cross-toolchain",
-            "BASE_VERSION": "3.3.1",
+            "BASE_IMAGE": "/cross-toolchain",
+            "BASE_VERSION": "4.0.0",
             "IMAGE_ARCH": "arm64",
             "GPU": ""
         }

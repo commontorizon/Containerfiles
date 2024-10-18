@@ -1,7 +1,7 @@
 {
     "image": "/debian",
     "registry": "commontorizon",
-    "version": "3.3.1-bookworm",
+    "version": "4.0.0",
     "multiarch": true,
     "machines": [
         {
@@ -14,8 +14,8 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE_ARM": "/debian",
             "BASE_IMAGE_ARM64": "/debian",
-            "BASE_IMAGE_AMD64": "/debian-upstream",
-            "BASE_VERSION": "3",
+            "BASE_IMAGE_AMD64": "/debian",
+            "BASE_VERSION": "4",
             "GPU": "",
             "BASE_GPU": ""
         },
@@ -27,8 +27,8 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE_ARM": "/debian",
             "BASE_IMAGE_ARM64": "/debian",
-            "BASE_IMAGE_AMD64": "/debian-upstream",
-            "BASE_VERSION": "3",
+            "BASE_IMAGE_AMD64": "/debian",
+            "BASE_VERSION": "4",
             "GPU": "-imx8",
             "BASE_GPU": ""
         },
@@ -40,8 +40,8 @@
             "BASE_REGISTRY": "torizon",
             "BASE_IMAGE_ARM": "/debian",
             "BASE_IMAGE_ARM64": "/debian",
-            "BASE_IMAGE_AMD64": "/debian-upstream",
-            "BASE_VERSION": "3",
+            "BASE_IMAGE_AMD64": "/debian",
+            "BASE_VERSION": "4",
             "GPU": "-am62",
             "BASE_GPU": "-am62"
         }

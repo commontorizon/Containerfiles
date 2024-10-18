@@ -15,23 +15,23 @@ param(
     )]
     [string]$NoCache = "false",
     [Parameter(
-        ValueFromRemainingArguments=$true,
-        Mandatory=$true,
-        HelpMessage="List of image names (folders) that should have the image built"
+        Position=0,
+        ValueFromRemainingArguments=$true
     )]
     [string[]]$ImageNames
 )
 
 if ($PushToDockerhub -ne "true" -and $PushToDockerhub -ne "false") {
-    Write-Error "Invalid value for PushToDockerhub. It should be 'true' or 'false'"
+    Write-Error "Invalid value for PushToDockerhub :: {$PushToDockerhub}. It should be 'true' or 'false'"
     exit 69
 } else {
     $_PushToDockerhub = $PushToDockerhub -eq "true"
 }
 
 if ($NoCache -ne "true" -and $NoCache -ne "false") {
-    Write-Error "Invalid value for PushToDockerhub. It should be 'true' or 'false'"
-    exit 69
+    Write-Warning "Invalid value for NoCache. It should be 'true' or 'false'"
+    Write-Warning "Using default value 'false'"
+    $_NoCache = $false
 } else {
     $_NoCache = $NoCache -eq "true"
 }
@@ -46,12 +46,25 @@ $ErrorActionPreference = "Stop"
 
 # get the actual script path without the file
 $SCRIPT_PATH = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$ImageNames = @($ImageNames)
+
+# show to the user the order of the images that will be built
+Write-Host -ForegroundColor Blue "Images to be built:"
+foreach ($_path in $ImageNames) {
+    Write-Host -ForegroundColor Blue "`t$_path"
+}
+Write-Host ""
 
 foreach ($_path in $ImageNames) {
+    Write-Host -ForegroundColor Blue "Sending $((Join-Path $SCRIPT_PATH ../ $_path args.json)) to build"
+    Write-Host ""
+
     # read metadata
     $metadata = Get-Content -Path `
-        (Join-Path $_path args.json) `
+        (Join-Path $SCRIPT_PATH ../ $_path args.json) `
             | ConvertFrom-Json
+
+    Set-Location (Join-Path  $SCRIPT_PATH ../)
 
     if ($metadata.multiarch -eq $true) {
         . (Join-Path $SCRIPT_PATH ./build-multiarch.ps1) -ContainerFileFolder $_path -PushToDockerhub $_PushToDockerhub -NoCache $_NoCache

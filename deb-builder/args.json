@@ -1,7 +1,7 @@
 {
     "image_prefix": "/deb-builder",
     "registry": "commontorizon",
-    "version": "bookworm-1",
+    "version": "4.0.0",
     "multiarch": false,
     "machines": [
         {
@@ -14,7 +14,7 @@
         },
         {
             "name": "arm",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "",
             "BASE_IMAGE": "debian",
             "BASE_VERSION": "bookworm",
             "IMAGE_ARCH": "arm",
@@ -22,7 +22,7 @@
         },
         {
             "name": "arm64",
-            "BASE_REGISTRY": "torizon",
+            "BASE_REGISTRY": "",
             "BASE_IMAGE": "debian",
             "BASE_VERSION": "bookworm",
             "IMAGE_ARCH": "arm64",
